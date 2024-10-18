@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply leading-[normal] m-0;
+}
+*,
+::before,
+::after {
+  border-width: 0;
+}
+.hero .btn {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.li-bulletremove{
+  list-style-type: none;
+  text-decoration: none;
+}
+.li-a{
+  text-decoration: none;
+  color: black;
+  align-items: center;
+}
+.hero .btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.hero .btn:active {
+  transform: scale(0.95);
+}
+.tx-40 {
+  padding-left: 13rem /* 160px */;
+}
+.h1-0{
+  height:10px
+}
+.text-119xl{
+  font-size: 128px
+} 
+.w-119xl{
+  width: 200px
+}
+.flex-dir{
+  flex-direction: row;
+}
+.resp-gap{
+  gap: 40px;
+}
+.mhidden {
+  display: none;
+}
+.md1{
+display: flex;
+}
+ @media screen and (max-width: 900px) {
+  /* … */
+  .text-119xl{
+    font-size: 80px;
+  }
+  .w-119xl{
+    width: 100px;
+  }
+  .px-20{
+    padding-left: 10px;
+    padding-right:  10px;
+  }
+  .py-20{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .flex-dir{
+    flex-direction: column;
+  }
+  .resp-gap{
+    gap: 10px;
+  }
+  .mhidden {
+    display: table-row;
+  }
+  .md1{
+  display: none;
+  }
+}

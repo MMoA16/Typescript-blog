@@ -20,7 +20,7 @@ const Home: NextPage = async() => {
   const strapiBlogData1 = await getStrapiData("/api/posts/1?populate=*");
   const strapiBlogData2 = await getStrapiData("/api/posts/2?populate=*");
   const {Title, MissionLine} = strapiData.data.attributes;
-  console.log(strapiBlogData1.data.attributes)
+  //console.log(strapiBlogData1.data.attributes)
   return (
     
      // {/* <div className="w-[1512px] hidden flex-col items-start justify-start"> */}

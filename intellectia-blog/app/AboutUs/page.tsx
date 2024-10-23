@@ -7,6 +7,8 @@ import Head from 'next/head'
 import Link from "next/link";
 import Vision from "@/components/Vision";
 import Mission from "@/components/mission";
+import { Divide } from "lucide-react";
+import Divider from "@/components/divider";
 
 interface ImageProps {
   id: number
@@ -49,9 +51,11 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   //   />
   // </Head>
   <>
+  <div className="self-stretch flex flex-col items-start justify-start">
   <Nav title={Title} />
+  <Divider/>
   <div className="bg-white dark:bg-gray-800">
-    <div className="container flex flex-row px-6 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
+    <div className="container flex flex-row px-20 py-20 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
       <div className="flex items-center justify-start w-1/2 h-96 md:w-full">
         <img
           className="object-cover w-full h-full max-w-2xl rounded-md"
@@ -87,10 +91,13 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
       </div>
     </div>
   </div>
-
   <Vision />
+  <Divider/>
+  <div className="container flex flex-row px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
+
+  
   <div className='bg-white'>
-    <div className='max-w-4xl mx-auto px-6 md:px-0 py-16'>
+    <div className='max-w-4xl mx-auto px-6 md:px-0 py-10'>
       <p className="mt-4 text-gray-600 dark:text-gray-400 text-justify">
         Driven by hunger for intellectual stimulation, we are constantly involved in researching ideas, conducting qualitative and quantitative analysis and applying complex frameworks to solve knotty problems. Our primary goal is to help people and their businesses. We built trust because of our will to help our clients accomplish their goals. Our role is to assist organization in critical areas of their inclusiveness work. We act as an educator, a catalyst for deeper change, a resource or a facilitator, the leadership of the process remains within your organization. We act as an extension of in-house legal cell or as independent legal consultants. Our efforts are towards being strategic partners for our clients growth and not just be a consulting firm.
           </p>
@@ -107,8 +114,9 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
           </p>
     </div>
   </div>
-
+</div>
   <Mission />
+  </div>
 </>
   );
 };

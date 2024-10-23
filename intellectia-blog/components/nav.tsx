@@ -37,7 +37,9 @@ const Nav: NextPage<NavType> = ({ className = "",title }) => {
     >
       <div className="flex flex-col items-start justify-start p-2 box-border">
       <div className="w-119xl  flex-1 relative font-dm-serif-display">
-            {title}
+        <Link href="/localhost:3000">
+          <a className="hover:underline">{title}</a>
+        </Link>
           </div>
           </div>
         <div className="w-1/2 self-stretch flex-row items-start justify-between gap-[20px] text-3xl py-10 mhidden md1">

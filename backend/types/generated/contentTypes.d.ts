@@ -926,15 +926,18 @@ export interface ApiTeamTeam extends Schema.CollectionType {
     singularName: 'team';
     pluralName: 'teams';
     displayName: 'Team';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    TeamMemberName: Attribute.String;
+    TeamMemberNumber: Attribute.Integer & Attribute.DefaultTo<0>;
     TeamMemberDesignation: Attribute.String;
     TeamMemberDescription: Attribute.Text;
     TeamMemberPhoto: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    TeamMemberEmail: Attribute.Email;
+    TeamMemberName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -51,9 +51,9 @@ body {
   font-size: 128px
 } 
 .w-119xl{
-  width: 200px
+  width: 250px
 }
-.flex-dir{
+.flex-dir1{
   flex-direction: row;
 }
 .resp-gap{
@@ -65,23 +65,26 @@ body {
 .md1{
 display: flex;
 }
+.flex-wrap{
+  flex-wrap:nowrap;
+}
  @media screen and (max-width: 900px) {
   /* … */
   .text-119xl{
     font-size: 80px;
   }
   .w-119xl{
-    width: 100px;
+    width: 120px;
   }
   .px-20{
-    padding-left: 10px;
-    padding-right:  10px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .py-20{
     padding-top: 10px;
     padding-bottom: 10px;
   }
-  .flex-dir{
+  .flex-dir1{
     flex-direction: column;
   }
   .resp-gap{
@@ -89,8 +92,40 @@ display: flex;
   }
   .mhidden {
     display: table-row;
+    
+  }
+  .flex-wrap{
+    flex-wrap:wrap;
   }
   .md1{
   display: none;
   }
 }
+/* styles/Card.module.css */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  max-width: 300px;
+  margin: 16px auto;
+}
+
+.card-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.card-name {
+  font-size: 1.5em;
+  margin: 8px 0;
+}
+
+.card-designation,
+.card-email,
+.card-phone {
+  font-size: 1em;
+  margin: 4px 0;
+}
+

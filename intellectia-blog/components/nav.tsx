@@ -33,12 +33,12 @@ const Nav: NextPage<NavType> = ({ className = "",title }) => {
     isActive ? activeClassName : "navlink";
   return (
     <div
-      className={`self-stretch flex flex-wrap items-center justify-between py-2 px-20 text-left text-5xl text-black font-dm-sans ${className}`}
+      className={`container self-stretch flex flex-wrap items-center justify-between py-2 px-20 text-left text-5xl text-black font-dm-sans ${className}`}
     >
       <div className="flex flex-col items-start justify-start p-2 box-border">
       <div className="w-119xl  flex-1 relative font-dm-serif-display">
-        <Link href="/localhost:3000">
-          <a className="hover:underline">{title}</a>
+        <Link href="http://localhost:3000" className="li-a" >
+          {title}
         </Link>
           </div>
           </div>

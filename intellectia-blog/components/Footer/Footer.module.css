@@ -1,0 +1,28 @@
+/* components/Footer.module.css */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+.socialList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.socialList li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.socialList a {
+    color: white;
+    text-decoration: none;
+}
+
+.socialList a:hover {
+    text-decoration: underline;
+}

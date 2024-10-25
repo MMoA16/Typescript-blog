@@ -4,15 +4,17 @@
   "info": {
     "singularName": "team",
     "pluralName": "teams",
-    "displayName": "Team"
+    "displayName": "Team",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "TeamMemberName": {
-      "type": "string"
+    "TeamMemberNumber": {
+      "type": "integer",
+      "default": 0
     },
     "TeamMemberDesignation": {
       "type": "string"
@@ -21,14 +23,21 @@
       "type": "text"
     },
     "TeamMemberPhoto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "TeamMemberEmail": {
+      "type": "email"
+    },
+    "TeamMemberName": {
+      "type": "string"
     }
   }
 }

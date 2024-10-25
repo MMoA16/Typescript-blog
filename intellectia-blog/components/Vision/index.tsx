@@ -2,11 +2,11 @@ const Vision = (): JSX.Element => {
 	return (
 		<div className="flex flex-col text-center w-full mb-20">
 			<div className="container p-4 mx-auto text-center">
-				<h2 className="text-4xl font-bold mt-8">Vision</h2>
+				<h2 className="text-4xl dark:text-black mt-8 font-dm-sans">Vision</h2>
 			</div>
 
 			<section className="text-gray-600 body-font">
-				<div className="container px-5 py-24 mx-auto">
+				<div className="container px-5 py-2 mx-auto">
 					<div className="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

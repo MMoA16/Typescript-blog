@@ -7,7 +7,7 @@ export type DividerType = {
 const Divider: NextPage<DividerType> = ({ className = "" }) => {
   return (
     <div
-      className={`self-stretch flex flex-row items-center justify-start py-0 px-20 ${className}`}
+      className={`container self-stretch flex flex-row items-center justify-start px-20 ${className}`}
     >
       <div className="flex-1 bg-black h-px" />
     </div>

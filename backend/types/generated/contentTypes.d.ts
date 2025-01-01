@@ -870,6 +870,7 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     MissionLine: Attribute.Text;
     Title: Attribute.String;
     description: Attribute.Text;
+    desc: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

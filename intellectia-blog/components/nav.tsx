@@ -33,7 +33,7 @@ const Nav: NextPage<NavType> = ({ className = "",title }) => {
     isActive ? activeClassName : "navlink";
   return (
     <div
-      className={`container self-stretch flex flex-wrap items-center justify-between py-2 px-20 text-left text-5xl text-black font-dm-sans ${className}`}
+      className={`flex flex-wrap items-center justify-between px-20 text-left mdN text-5xl text-black font-dm-sans ${className}`}
     >
       <div className="flex flex-col items-start justify-start p-2 box-border">
       <div className="w-119xl  flex-1 relative font-dm-serif-display">
@@ -42,7 +42,7 @@ const Nav: NextPage<NavType> = ({ className = "",title }) => {
         </Link>
           </div>
           </div>
-        <div className="w-1/2 self-stretch flex-row items-start justify-between gap-[20px] text-3xl py-10 mhidden md1">
+        <div className="w-1/2 self-stretch flex-row items-start justify-between gap-[20px] text-3xl mhidden md1">
           <div className="flex-1 relative">
           <ul className="flex justify-end py-5  rounded-sm">
           {links.map((p) => (

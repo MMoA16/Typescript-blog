@@ -6,22 +6,20 @@ const BlogCard = ({ BlogData }: any) => {
     const imageUrl = "http://localhost:1337" + BlogData.attributes.cover.data.attributes.url;
     console.log(ID)
     return (
-        <div className="rounded-lg shadow-md p-4 mb-4 overflow-hidden border border-gray-600 cursor-pointer">
+        <div className="flex-row rounded-lg shadow-md border border-gray-600 cursor-pointer">
             <Link href={"/Blogs/" + ID}>
                 <div>
-                    <Image
-                        priority
+                    <img
                         src={imageUrl}
                         alt={""}
-                        className="rounded-t-lg"
-                        width={600} height={400}
+                        width={500} height={300}
                     />
                 </div>
-                <div className="p-2">
+                
                     <h2 className="text-xl font-semibold mb-2 overflow-ellipsis">
                         {BlogData.attributes.title}
                     </h2>
-                </div>
+        
             </Link>
             <p className="text-gray-600">{BlogData.attributes.ShortDesc}</p>
         </div>

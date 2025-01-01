@@ -1,23 +1,33 @@
 import Link from 'next/link'
 
 import styles from './Footer.module.css'; // Optional: for styling
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import SocialIcons from '../SocialIcons';
 
 
 const Footer = (): JSX.Element => {
 	return (
-		<footer className="">
-			<div className="container dark:bg-gray-800 px-20 py-4 mx-auto">
-				<div className="container lg:flex">
-	
-            <div className={styles.container}>
-                <ul className={styles.socialList}>
-                    <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                    <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                    <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                </ul>
-            </div>
+		
+			<div className="dark:bg-gray-800 px-20 py-4 mx-auto mdN">
+				<div className="lg:flex">
+				<div>
+					<br></br>
+		
+								<Link href="/" className="text-gray-700 uppercase dark:text-white li-bulletremove">
+										Intellectia
+								</Link>
+								<br></br>
+								<br></br>
+								<br></br>
+								<br></br>
+				<SocialIcons/>
+				
+				</div>
+			
+                
 
-					<div className="container mt-6 lg:mt-0 lg:flex-1">
+					<div className="mt-6 px-30 lg:mt-0 lg:flex-1">
 						<div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
 							<div>
 								<h3 className="text-gray-700 uppercase dark:text-white">About</h3>
@@ -94,14 +104,14 @@ const Footer = (): JSX.Element => {
 				</div>
 
 				<hr className="h-px my-6 bg-gray-300 border-none dark:bg-gray-700" />
-
+				
 				<div>
 					<p className="text-center text-white dark:bg-gray-800">
 						© Intellectia  {new Date().getFullYear()} - All rights reserved
 					</p>
 				</div>
 			</div>
-		</footer>
+
 	)
 }
 

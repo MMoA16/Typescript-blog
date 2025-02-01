@@ -5,6 +5,11 @@ import Blogs from "../components/blogs";
 import Mission from "@/components/mission";
 import Divider from "@/components/divider";
 import Footer from "@/components/Footer/Footer";
+import DisclaimerModal from "@/components/Disclaimer";
+import PracticeCarousel from "@/components/PracticeCarousel"
+
+import { Key } from "react";
+import Link from "next/link";
 
 async function getStrapiData(url:string){
   const baseURL="http://localhost:1337";
@@ -17,10 +22,12 @@ async function getStrapiData(url:string){
   }
 }
 const Home: NextPage = async() => {
-  const strapiData = await getStrapiData("/api/home-page");
+  const strapiData = await getStrapiData("/api/home-page?populate=*");
   const strapiBlogData1 = await getStrapiData("/api/posts/1?populate=*");
   const strapiBlogData2 = await getStrapiData("/api/posts/2?populate=*");
-  const {Title, MissionLine} = strapiData.data.attributes;
+  const {Title,description, MissionLine, Disclaimer, HomePageCarousel} = strapiData.data.attributes;
+  const imageUrl = "http://localhost:1337" + strapiBlogData2.data.attributes.cover.data.attributes.url;
+  
   //console.log(strapiBlogData1.data.attributes)
   return (
     
@@ -66,15 +73,20 @@ const Home: NextPage = async() => {
       </div> */
       
 <>
+
+        <DisclaimerModal disclaimer={Disclaimer}/>
         <Nav title= {Title} />
+        
+        <PracticeCarousel HomePageCarousel={HomePageCarousel.data} missionLine={MissionLine}/>
+        
+        
+        <Mission missionLine ={description}/>
         <Divider/>
-        <Mission missionLine ={MissionLine}/>
-        <Divider/>
-        <AboutContainer />
+        {/* <AboutContainer />
         <br></br>
         <Divider/>
-        <br></br>
-        <div className="container grid grid-cols-2 gap-0 flex flex-col mdN items-start py-20 px-20 gap-[40px]">
+        <br></br> */}
+        {/* <div className="grid grid-cols-2 gap-0 flex flex-col mdN items-start py-20 px-20 gap-[40px]">
           <div className="w-[100px] container flex flex-dir1 items-center gap-[40px] text-gray-300">
             <div className="flex flex-dir1 items-center justify-start pl-0 box-border mdN text-lg font-dm-sans">
               <div className="w-[100px] items-center relative inline-block h-[29px] shrink-0">
@@ -144,10 +156,8 @@ const Home: NextPage = async() => {
             </div>
 
             </div>
-            {/* <div className="self-stretch flex flex-row items-center justify-start py-0 pr-20 pl-0">
-              <div className="flex-1 bg-black h-px" />
-            </div> */}
-          </div>
+           
+          </div> */}
         <Footer/>
         </>
   );

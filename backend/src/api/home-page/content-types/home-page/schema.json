@@ -23,6 +23,19 @@
     },
     "desc": {
       "type": "richtext"
+    },
+    "Disclaimer": {
+      "type": "richtext"
+    },
+    "HomePageCarousel": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

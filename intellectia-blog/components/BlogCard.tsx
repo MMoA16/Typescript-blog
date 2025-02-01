@@ -13,15 +13,18 @@ const BlogCard = ({ BlogData }: any) => {
                         src={imageUrl}
                         alt={""}
                         width={500} height={300}
+                        
                     />
                 </div>
-                
-                    <h2 className="text-xl font-semibold mb-2 overflow-ellipsis">
+                <div>
+                    <h3 className="text-sm font-semibold mb-2 overflow-ellipsis">
                         {BlogData.attributes.title}
-                    </h2>
-        
+                    </h3>
+                </div>
             </Link>
+            <div>
             <p className="text-gray-600">{BlogData.attributes.ShortDesc}</p>
+            </div>
         </div>
     )
 }

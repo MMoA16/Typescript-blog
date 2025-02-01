@@ -68,6 +68,9 @@ body {
 .text-119xl{
   font-size: 87px
 } 
+.text-119xlhome{
+  font-size: 40px
+}
 .w-119xl{
   width: 250px
 }
@@ -95,14 +98,28 @@ display: flex;
   padding-right:0px;
 }
 .mdAboutUs{
-  height: full
+  height: full;
+}
+.mdBlogs{
+  height: 200px;
+  width: 300px;
+}
+.img-fit{
+    width: 100%;
 }
 pre{
 
   white-space: pre-wrap; /* Wraps text to fit the container */
 
 }
- @media screen and (max-width: 900px) {
+.mdHome{
+  height:500px;
+}
+.mdHomeImg{
+  width:800px;
+  height: 300px;
+}
+ @media screen and (max-width: 768px) {
   /* … */
   .text-119xl{
     font-size: 80px;
@@ -118,16 +135,17 @@ pre{
     padding-left: 20px;
     padding-right: 20px;
   }
-  .py-20{
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+  
   .flex-dir1{
     flex-direction: column;
   }
   .resp-gap{
     gap: 10px;
   }
+  .img-fit{
+    width: 100%;
+    height: 50%;
+}
   .mhidden {
     display: table-row;
     
@@ -136,18 +154,30 @@ pre{
     height: 500px;
     width: 460px;
   }
+  .mdHome{
+    height: 900px;
+
+  }
+  .mdHomeImg{
+    height: 550px;
+  }
+  .mdBlogs{
+    height: 300px;
+  width: full;
+  }
   .mdAboutUsBack{
     height: 930px;
     width:500px
   }
-  .mdN{
-    width: 460px;
-  }
+  
   .flex-wrap{
     flex-wrap:wrap;
   }
   .md1{
   display: none;
+  }
+  .tx-40 {
+    padding-left: 1rem /* 160px */;
   }
 }
 /* styles/Card.module.css */

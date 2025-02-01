@@ -1,7 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import Nav from "@/components/nav";
 import type { NextPage } from "next";
-
 export type BlogsType = {
   className?: string;
 };
@@ -25,7 +24,9 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
   return (
     <>
     <Nav title={Title}/>
-    <div className="self-stretch flex flex-row items-center justify-start gap-[40px] py-[60px] tx-40 text-gray-300">
+    <br></br>
+    <br></br>
+    <div className="flex flex-dir1 flex-wrap justify-start resp-gap tx-40">
     {strapiBlogData?.data?.map((category: any) => (
         <div key={category.id}>
           <BlogCard BlogData={category} />

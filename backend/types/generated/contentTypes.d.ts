@@ -871,6 +871,11 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     Title: Attribute.String;
     description: Attribute.Text;
     desc: Attribute.RichText;
+    Disclaimer: Attribute.RichText;
+    HomePageCarousel: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -917,6 +922,39 @@ export interface ApiPostPost extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPracticeAreaPracticeArea extends Schema.CollectionType {
+  collectionName: 'practice_areas';
+  info: {
+    singularName: 'practice-area';
+    pluralName: 'practice-areas';
+    displayName: 'Practice Areas';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    PracticeAreaImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::practice-area.practice-area',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::practice-area.practice-area',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -971,6 +1009,7 @@ declare module '@strapi/types' {
       'api::author.author': ApiAuthorAuthor;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::post.post': ApiPostPost;
+      'api::practice-area.practice-area': ApiPracticeAreaPracticeArea;
       'api::team.team': ApiTeamTeam;
     }
   }

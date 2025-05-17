@@ -7,9 +7,12 @@ import Divider from "@/components/divider";
 import Footer from "@/components/Footer/Footer";
 import DisclaimerModal from "@/components/Disclaimer";
 import PracticeCarousel from "@/components/PracticeCarousel"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocation } from "@fortawesome/free-solid-svg-icons";
 import { Key } from "react";
 import Link from "next/link";
+import CardNew from "@/components/CardNew";
+import CarouselNew from "@/components/CarouselNew";
 
 async function getStrapiData(url:string){
   const baseURL="http://localhost:1337";
@@ -23,6 +26,7 @@ async function getStrapiData(url:string){
 }
 const Home: NextPage = async() => {
   const strapiData = await getStrapiData("/api/home-page?populate=*");
+  const strapiBlogData = await getStrapiData("/api/posts?populate=*");
   const strapiBlogData1 = await getStrapiData("/api/posts/1?populate=*");
   const strapiBlogData2 = await getStrapiData("/api/posts/2?populate=*");
   const {Title,description, MissionLine, Disclaimer, HomePageCarousel} = strapiData.data.attributes;
@@ -78,31 +82,37 @@ const Home: NextPage = async() => {
         <Nav title= {Title} />
         
         <PracticeCarousel HomePageCarousel={HomePageCarousel.data} missionLine={MissionLine}/>
+        <Link href="https://www.google.com/maps/place/Intelectia+Legal+Firm/@12.961518,77.5925548,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15d13a793489:0xe5f93f75c0c87a66!8m2!3d12.961518!4d77.5951297!16s%2Fg%2F1tdxj98p?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank">
+
+        <div className="font-semibold text-gray-30 rounded-md ShowInMaps">
+          Show In Map
+      
+          <FontAwesomeIcon icon={faLocation} className="fa-solid fa-location-crosshairs fa-2x locIcn">
+            
+          </FontAwesomeIcon>
+          </div>
         
+              </Link>
+              
         
         <Mission missionLine ={description}/>
+       
         <Divider/>
+        
         {/* <AboutContainer />
         <br></br>
         <Divider/>
         <br></br> */}
-        {/* <div className="grid grid-cols-2 gap-0 flex flex-col mdN items-start py-20 px-20 gap-[40px]">
-          <div className="w-[100px] container flex flex-dir1 items-center gap-[40px] text-gray-300">
-            <div className="flex flex-dir1 items-center justify-start pl-0 box-border mdN text-lg font-dm-sans">
-              <div className="w-[100px] items-center relative inline-block h-[29px] shrink-0">
-                Resources
-              </div>
-            </div>
-            
-          <br></br>
-          <Blogs  BlogData = {strapiBlogData2.data}/>
-          
-          <Blogs  BlogData = {strapiBlogData2.data}/>
-          </div>
-        </div>
-        <br></br>
-        <br></br>
-        <Divider/><br></br>
+        
+          <div className="flex justify-center">
+    
+             
+              <CarouselNew BlogPosts={strapiBlogData.data}/>
+              
+     
+        </div> 
+       
+        {/*<Divider/><br></br>
         <div className="self-stretch h-[704px] flex flex-col items-center justify-center py-20 px-20 box-border text-21xl font-dm-serif-display mdN">
           <div className="flex-1 flex flex-dir1 items-center justify-start gap-[40px]">
             <div className="w-48 flex flex-dir1 items-center justify-start py-2 pr-2 pl-0 box-border text-lg font-dm-sans">
@@ -158,6 +168,7 @@ const Home: NextPage = async() => {
             </div>
            
           </div> */}
+          
         <Footer/>
         </>
   );

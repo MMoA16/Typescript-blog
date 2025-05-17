@@ -932,6 +932,7 @@ export interface ApiPracticeAreaPracticeArea extends Schema.CollectionType {
     singularName: 'practice-area';
     pluralName: 'practice-areas';
     displayName: 'Practice Areas';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -941,6 +942,7 @@ export interface ApiPracticeAreaPracticeArea extends Schema.CollectionType {
     PracticeAreaImage: Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    Description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

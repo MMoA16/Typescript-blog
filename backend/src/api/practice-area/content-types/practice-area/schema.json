@@ -4,7 +4,8 @@
   "info": {
     "singularName": "practice-area",
     "pluralName": "practice-areas",
-    "displayName": "Practice Areas"
+    "displayName": "Practice Areas",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,6 +24,9 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "Description": {
+      "type": "text"
     }
   }
 }

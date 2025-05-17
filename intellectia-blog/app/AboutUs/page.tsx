@@ -132,9 +132,9 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
           </h2>
   <div className="container flex flex-row flex-wrap mdN">
   {strapiAboutData?.data?.map((teamMember: any) => (
-    <div className="container flex flex-row flex-wrap" key={teamMember.id}>
-  <Card teamMember={teamMember} />
-  </div>
+
+  <Card key={teamMember.id} teamMember={teamMember} />
+
   ))}
   </div>
   </div>

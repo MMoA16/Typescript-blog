@@ -27,15 +27,17 @@ export type PracticeContainerType = {
         }
       }
 const Practice: NextPage<PracticeContainerType> = async () => {
-    const strapiHomeData = await getStrapiData("/api/home-page");
+    const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
   const strapipracticearea = await getStrapiData("/api/practice-areas?populate=*");
   const strapiFAQs = await getStrapiData("/api/faqs?populate=*");
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
   console.log("hujioj",strapiFAQs.data );
-  const { Title, MissionLine, desc} = strapiHomeData.data.attributes;
+  const { Title, MissionLine, desc,Logo} = strapiHomeData.data.attributes;
+  const logoURL="http://localhost:1337"+Logo.data.attributes.url
+
     return (  
         <>
-        <Nav title={Title} />
+        <Nav  logoURL={logoURL} />
         
         <div className="container flex flex-wrap justify-center gap-[20px] p-4 px-20" >
         {strapipracticearea?.data?.map((teamMember: any) => (

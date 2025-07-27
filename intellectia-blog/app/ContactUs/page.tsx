@@ -19,12 +19,13 @@ async function getStrapiData(url: string) {
 }
 
 const ContactUs: NextPage<ContactContainerType> = async () => {
-  const strapiHomeData = await getStrapiData("/api/home-page");
-  const { Title } = strapiHomeData.data.attributes;
+  const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
+  const { Title,Logo } = strapiHomeData.data.attributes;
+  const logoURL="http://localhost:1337"+Logo.data.attributes.url
 
   return (
     <>
-      <Nav title={Title} />
+      <Nav logoURL={logoURL} />
 
       <div className=" dark:bg-gray-800 text-white flex flex-row flex-wrap py-15 md:w-full md:py-16 md:flex-row md:items-center bg-gray-100 justify-center" >
       <div className="flex items-center justify-center w-1/2 px-20 md:w-full h-full">

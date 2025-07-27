@@ -38,11 +38,12 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
     "/frame-14@2x.png"
   ]
   console.log("hujioj");
-  const strapiHomeData = await getStrapiData("/api/home-page");
+  const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
   const strapiAboutData = await getStrapiData("/api/teams?populate=*");
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
   //console.log("hujioj",strapiAboutUs.data.attributes);
-  const { Title, MissionLine, desc} = strapiHomeData.data.attributes;
+  const { Title, MissionLine, desc, Logo} = strapiHomeData.data.attributes;
+  const logoURL="http://localhost:1337"+Logo.data.attributes.url
   /*const teamMember = {
     name: 'John Doe',
     photo: '/frame-16@2x.png', // Make sure to use a valid image path
@@ -61,7 +62,8 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   //   />
   // </Head>
   <>
-  <Nav title={Title} />
+  <Nav logoURL={logoURL} />
+  
   {/* <Divider/> */}
   {/* <div className="md:w-full"> */}
     <div className="dark:bg-gray-800 flex flex-row flex-wrapAb py-10 md:w-full md:h-50 md:py-16 md:flex-row md:items-center mdAboutUsBack">

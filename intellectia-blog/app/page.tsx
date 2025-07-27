@@ -26,13 +26,14 @@ async function getStrapiData(url:string){
   }
 }
 const Home: NextPage = async() => {
+  const baseURL = "http://localhost:1337";
   const strapiData = await getStrapiData("/api/home-page?populate=*");
   const strapiBlogData = await getStrapiData("/api/posts?populate=*");
   const strapiBlogData1 = await getStrapiData("/api/posts/1?populate=*");
   const strapiBlogData2 = await getStrapiData("/api/posts/2?populate=*");
   const {Title,description, MissionLine, Disclaimer, HomePageCarousel,Logo} = strapiData.data.attributes;
-  const imageUrl = "http://localhost:1337" + strapiBlogData2.data.attributes.cover.data.attributes.url;
-  const logoURL="http://localhost:1337"+Logo.data.attributes.url
+  const imageUrl = baseURL + strapiBlogData2.data.attributes.cover.data.attributes.url;
+  const logoURL=baseURL+Logo.data.attributes.url;
   //console.log(strapiBlogData1.data.attributes)
   return (
     

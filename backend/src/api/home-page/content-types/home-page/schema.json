@@ -28,6 +28,17 @@
       "type": "richtext"
     },
     "HomePageCarousel": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Logo": {
       "allowedTypes": [
         "images",
         "files",
@@ -35,7 +46,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": true
+      "multiple": false
     }
   }
 }

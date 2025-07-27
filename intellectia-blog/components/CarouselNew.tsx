@@ -41,7 +41,6 @@ const CarouselNew = ({BlogPosts}:any) => {
     </div>
 <div>
       <CardNew BlogPosts={BlogPosts[currentIndex]} alt="Carousel Image" />
-    
 </div>
 <div>
           <CardNew BlogPosts={BlogPosts[currentIndex + 1]} alt="Carousel Image" />

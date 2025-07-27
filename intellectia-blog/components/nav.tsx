@@ -13,17 +13,17 @@ import {
 } from "../data/animationConfig";
 export type NavType = {
   className?: string;
-  title?: string;
+  logoURL?:string;
 };
 const links = [
   { href: "/AboutUs", text: "About" },
   { href: "/Blogs", text: "Resources" },
   { href: "/Practices", text: "Practices" },
-  { href: "/Sectors", text: "Sectors" },
-  { href: "/contact", text: "Contact Us" },
+  { href: "/ContactUs", text: "Contact Us" },
 ];
-const Nav: NextPage<NavType> = ({ className = "",title }) => {
-  const path = usePathname();
+const Nav: NextPage<NavType> = ({ className = "",logoURL}) => {
+  const imageURL=logoURL;
+  console.log(imageURL)
   const [isOpen,setIsOpen]=useState(false);
   const toggleNavbar=()=>{
     setIsOpen(!isOpen);
@@ -33,20 +33,18 @@ const Nav: NextPage<NavType> = ({ className = "",title }) => {
     isActive ? activeClassName : "navlink";
   return (
     <div
-      className={`flex flex-wrap items-center justify-between px-20 text-left mdN text-5xl text-black font-dm-sans ${className}`}
+      className={`flex dark:bg-gray-800 flex-wrap items-center justify-between px-20 text-left mdN text-5xl font-dm-sans${className}`}
     >
       <div className="flex flex-col items-start justify-start p-2 box-border">
-      <div className="w-119xl  flex-1 relative font-dm-serif-display">
-        <Link href="http://localhost:3000" className="li-a" >
-          {title}
-        </Link>
-          </div>
-          </div>
+        <div className="w-119xl text-bold flex-1 relative">
+          <img src={imageURL} className="logo-image"></img>
+        </div>
+      </div>
         <div className="w-1/2 self-stretch flex-row items-start justify-between gap-[20px] text-3xl mhidden md1">
           <div className="flex-1 relative">
-          <ul className="flex justify-end py-5  rounded-sm">
+          <ul className="flex justify-end py-5 rounded-sm">
           {links.map((p) => (
-            <li className="pr-[2.5rem] li-bulletremove" key={p.href}>
+            <li className="pr-[2.5rem] li-bulletremove " key={p.href}>
               <motion.div whileHover={{ scale:1.05}} variants={mobileNavListVariant} {...mobileNavExitProps}>
                 <Link href={p.href} className="li-a">
                   {p.text}

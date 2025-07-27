@@ -11,6 +11,23 @@ body {
 ::after {
   border-width: 0;
 }
+/* Blog Post Container */
+.blog-container {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 1rem;
+}
+
+/* Title Styling */
+.blog-title {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 2rem;
+}
 .hero .btn {
   display: inline-block;
   margin-top: 40px;
@@ -75,7 +92,7 @@ body {
 }
 .li-a{
   text-decoration: none;
-  color: black;
+  color: white;
   align-items: center;
 }
 .hero .btn:hover {
@@ -94,12 +111,18 @@ body {
 }
 .text-119xl{
   font-size: 87px
-} 
+}
+.text-119xlQuestion{
+  font-size: 15px
+}
 .text-119xlhome{
-  font-size: 40px
+  font-size: 30px
+}
+.text-119xlAnswer{
+  font-size: 15px
 }
 .w-119xl{
-  width: 250px
+  width: 350px
 }
 .flex-dir1{
   flex-direction: row;
@@ -116,6 +139,9 @@ display: flex;
 .flex-wrap{
   flex-wrap:wrap;
 }
+.flex-wrapAb{
+  flex-wrap:nowrap;
+}
 .px-30{
   padding-left:40px;
   padding-right:0px;
@@ -123,6 +149,16 @@ display: flex;
 .px-40{
   padding-left:50px;
   padding-right:0px;
+}
+.faqcss{
+   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.px-50{
+  padding-left:50px;
+  padding-right:50px;
+  padding-top:50px;
+  padding-bottom:50px;
 }
 .mdAboutUs{
   height: full;
@@ -140,11 +176,16 @@ pre{
 
 }
 .mdHome{
-  height:500px;
+  height:400px;
 }
 .mdHomeImg{
-  width:800px;
-  height: 300px;
+  width:1200px;
+  height: 600px;
+}
+@media (min-width: 768px) {
+  .blog-title {
+    font-size: 3rem;
+  }
 }
  @media screen and (max-width: 768px) {
   /* … */
@@ -162,7 +203,12 @@ pre{
     padding-left: 20px;
     padding-right: 20px;
   }
-  
+  .px-50{
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:20px;
+    padding-bottom:20px;
+  }
   .flex-dir1{
     flex-direction: column;
   }
@@ -183,11 +229,8 @@ pre{
   }
   .mdHome{
     height: 900px;
-
   }
-  .mdHomeImg{
-    height: 550px;
-  }
+  
   .mdBlogs{
     height: 300px;
   width: full;
@@ -198,6 +241,9 @@ pre{
   }
   
   .flex-wrap{
+    flex-wrap:wrap;
+  }
+  .flex-wrapAb{
     flex-wrap:wrap;
   }
   .md1{
@@ -235,3 +281,157 @@ pre{
   margin: 4px 0;
 }
 
+
+/* Meta Information */
+.blog-meta {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 3rem;
+}
+
+/* Content Styling */
+.blog-content {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #374151;
+}
+
+.blog-content p {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+}
+
+/* Image Styling */
+.blog-image-container {
+  margin: 3rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-image-wrapper {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.blog-image {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.blog-image:hover {
+  transform: scale(1.02);
+}
+
+/* Link Styling */
+.blog-link {
+  color: #2563eb;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.blog-link:hover {
+  color: #1e40af;
+}
+
+/*Card Landing CSS*/
+
+.card-containerLandingPage  {
+  display: flex;
+  justify-content: center;
+  position:relative;
+  margin: 20px;
+}
+
+.cardLandingPage {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 350px;
+  transition: transform 0.3s ease;
+}
+
+.cardLandingPage:hover {
+  transform: scale(1.05);
+}
+
+.card-imageLandingPage  {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  
+}
+.logo-image{
+  width:200px;
+  height:80px;
+}
+
+.card-contentLandingPage  {
+  padding: 20px;
+}
+
+.card-titleLandingPage  {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.card-descriptionLandingPage  {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.card-buttonLandingPage  {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cardLandingPage  {
+    max-width: 100%;
+  }
+
+  .card-titleLandingPage  {
+    font-size: 20px;
+  }
+
+  .card-descriptionLandingPage  {
+    font-size: 14px;
+  }
+
+  .card-buttonLandingPage  {
+    font-size: 14px;
+  }
+}

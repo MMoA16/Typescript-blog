@@ -13,6 +13,7 @@ import { Key } from "react";
 import Link from "next/link";
 import CardNew from "@/components/CardNew";
 import CarouselNew from "@/components/CarouselNew";
+import CollapsibleDropdown from "@/components/CollpasibleDropdown";
 
 async function getStrapiData(url:string){
   const baseURL="http://localhost:1337";
@@ -29,9 +30,9 @@ const Home: NextPage = async() => {
   const strapiBlogData = await getStrapiData("/api/posts?populate=*");
   const strapiBlogData1 = await getStrapiData("/api/posts/1?populate=*");
   const strapiBlogData2 = await getStrapiData("/api/posts/2?populate=*");
-  const {Title,description, MissionLine, Disclaimer, HomePageCarousel} = strapiData.data.attributes;
+  const {Title,description, MissionLine, Disclaimer, HomePageCarousel,Logo} = strapiData.data.attributes;
   const imageUrl = "http://localhost:1337" + strapiBlogData2.data.attributes.cover.data.attributes.url;
-  
+  const logoURL="http://localhost:1337"+Logo.data.attributes.url
   //console.log(strapiBlogData1.data.attributes)
   return (
     
@@ -79,7 +80,7 @@ const Home: NextPage = async() => {
 <>
 
         <DisclaimerModal disclaimer={Disclaimer}/>
-        <Nav title= {Title} />
+        <Nav logoURL={logoURL}/>
         
         <PracticeCarousel HomePageCarousel={HomePageCarousel.data} missionLine={MissionLine}/>
         <Link href="https://www.google.com/maps/place/Intelectia+Legal+Firm/@12.961518,77.5925548,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15d13a793489:0xe5f93f75c0c87a66!8m2!3d12.961518!4d77.5951297!16s%2Fg%2F1tdxj98p?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank">
@@ -111,7 +112,7 @@ const Home: NextPage = async() => {
               
      
         </div> 
-       
+
         {/*<Divider/><br></br>
         <div className="self-stretch h-[704px] flex flex-col items-center justify-center py-20 px-20 box-border text-21xl font-dm-serif-display mdN">
           <div className="flex-1 flex flex-dir1 items-center justify-start gap-[40px]">

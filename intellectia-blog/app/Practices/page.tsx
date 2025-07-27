@@ -1,7 +1,11 @@
+
 import CardNew from "@/components/CardNew";
 import CardNewPracticeArea from "@/components/CardNewPracticeArea";
+import FAQs from "@/components/FAQs";
+import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/nav";
-import { Card } from "@material-ui/core";
+
+import { motion } from "framer-motion";
 import { NextPage } from "next";
 import Link from "next/link";
 
@@ -25,13 +29,15 @@ export type PracticeContainerType = {
 const Practice: NextPage<PracticeContainerType> = async () => {
     const strapiHomeData = await getStrapiData("/api/home-page");
   const strapipracticearea = await getStrapiData("/api/practice-areas?populate=*");
+  const strapiFAQs = await getStrapiData("/api/faqs?populate=*");
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
-  console.log("hujioj",strapipracticearea );
+  console.log("hujioj",strapiFAQs.data );
   const { Title, MissionLine, desc} = strapiHomeData.data.attributes;
     return (  
         <>
         <Nav title={Title} />
-        <div className="container flex flex-wrap justify-center gap-6 p-4" >
+        
+        <div className="container flex flex-wrap justify-center gap-[20px] p-4 px-20" >
         {strapipracticearea?.data?.map((teamMember: any) => (
         
           <CardNewPracticeArea key={teamMember.id} BlogPosts={teamMember} />
@@ -39,6 +45,14 @@ const Practice: NextPage<PracticeContainerType> = async () => {
         
           ))}
           </div>
+          <div className="px-50">
+          <div className="max-w-2xl mx-auto px-50 faqcss dark:bg-gray-800">
+      <h1 className="text-2xl font-bold mb-4 text-gray-700 dark:text-white li-bulletremove">FAQs</h1>
+          <FAQs faqs={strapiFAQs.data}/>
+    </div>
+    </div>
+    <Footer />
+ 
           </>
           
     );

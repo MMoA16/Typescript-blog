@@ -6,7 +6,9 @@ const imageUrl = "http://localhost:1337" + BlogPosts.attributes.PracticeAreaImag
 const title = BlogPosts.attributes.title;
 const desc = BlogPosts.attributes.Description;
   return (
+    
     <div className="card-container">
+      
       <div className="card3">
 
         <img
@@ -22,7 +24,7 @@ const desc = BlogPosts.attributes.Description;
           <button className="card-button">Read More</button>
         </div>
       </div>
-
+          
       <style jsx>{`
         .card-container {
           display: flex;

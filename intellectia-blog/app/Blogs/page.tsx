@@ -1,4 +1,6 @@
-import BlogCard from "@/components/BlogCard";
+
+import BlogFrontend from "@/components/BlogFrontend";
+import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/nav";
 import type { NextPage } from "next";
 export type BlogsType = {
@@ -26,13 +28,10 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
     <Nav title={Title}/>
     <br></br>
     <br></br>
-    <div className="flex flex-dir1 flex-wrap justify-start resp-gap tx-40">
-    {strapiBlogData?.data?.map((category: any) => (
-        <div key={category.id}>
-          <BlogCard BlogData={category} />
-        </div>
-      ))}
-      </div>
+    <BlogFrontend strapiBlogData={strapiBlogData}></BlogFrontend>
+    <br></br>
+    <br></br>
+    <Footer/>
     </>
   );
 };

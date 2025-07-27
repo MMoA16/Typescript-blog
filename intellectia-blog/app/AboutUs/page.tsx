@@ -64,7 +64,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   <Nav title={Title} />
   {/* <Divider/> */}
   {/* <div className="md:w-full"> */}
-    <div className="dark:bg-gray-800 flex flex-row flex-wrap py-10 md:w-full md:h-50 md:py-16 md:flex-row md:items-center mdAboutUsBack">
+    <div className="dark:bg-gray-800 flex flex-row flex-wrapAb py-10 md:w-full md:h-50 md:py-16 md:flex-row md:items-center mdAboutUsBack">
       <div className="flex items-center justify-start w-1/2 h-96 px-20 md:w-full">
         <img
           className="object-cover w-full h-full max-w-2xl mdAboutUs"

@@ -14,9 +14,9 @@ import CustomCarousel from "./CustomCarousel";
 const PracticeCarousel : NextPage<PracticeCarousel> = ({ className = "",HomePageCarousel,missionLine }) => {
     
 return (
-    <div className={`dark:bg-gray-800 flex-1 flex flex-dir1 justify-start py-20 px-20 mdHome ${className}`}>
+    <div className={`dark:bg-zinc-100 flex-1 flex flex-dir1 justify-start py-20 px-20 mdHome ${className}`}>
   
-<Carousel className="mdHomeImg img-fit shrink-0" showThumbs={false} autoPlay>
+<Carousel className="mdHomeImg" showThumbs={false} autoPlay>
     {HomePageCarousel?.map((id: any) => (
     
           <CustomCarousel id={id}/>
@@ -26,7 +26,7 @@ return (
     )}
     </Carousel>
     
-    <div className="text-119xlhome text-white font-dm-serif-display px-30 py-10">
+    <div className="text-119xlhome font-dm-serif-display px-30 py-">
         <div className="relative">
           {missionLine}
         </div>

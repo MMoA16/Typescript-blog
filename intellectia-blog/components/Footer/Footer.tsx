@@ -9,7 +9,7 @@ import SocialIcons from '../SocialIcons';
 const Footer = (): JSX.Element => {
 	return (
 		
-			<div className="dark:bg-gray-800 px-20 py-4 mx-auto mdN">
+			<div className="dark:bg-gray-800 px-20 py-4 mx-auto font-dm-sans">
 				<div className="lg:flex">
 				<div>
 					<br></br>

@@ -25,7 +25,12 @@ async function getStrapiData(url:string){
     console.error(error);
   }
 }
+
+
+  
 const Home: NextPage = async() => {
+
+
   const baseURL = "http://localhost:1337";
   const strapiData = await getStrapiData("/api/home-page?populate=*");
   const strapiBlogData = await getStrapiData("/api/posts?populate=*");
@@ -34,6 +39,9 @@ const Home: NextPage = async() => {
   const {Title,description, MissionLine, Disclaimer, HomePageCarousel,Logo} = strapiData.data.attributes;
   const imageUrl = baseURL + strapiBlogData2.data.attributes.cover.data.attributes.url;
   const logoURL=baseURL+Logo.data.attributes.url;
+
+
+
   //console.log(strapiBlogData1.data.attributes)
   return (
     

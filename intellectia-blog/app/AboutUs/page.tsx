@@ -11,6 +11,7 @@ import { Divide } from "lucide-react";
 import Divider from "@/components/divider";
 import Card from "@/components/Card";
 import Footer from "@/components/Footer/Footer";
+import TeamList from "@/components/TeamList";
 
 interface ImageProps {
   id: number
@@ -40,6 +41,8 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   console.log("hujioj");
   const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
   const strapiAboutData = await getStrapiData("/api/teams?populate=*");
+  const TeamData = await getStrapiData("/api/team-members?populate=*");
+
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
   //console.log("hujioj",strapiAboutUs.data.attributes);
   const { Title, MissionLine, desc, Logo} = strapiHomeData.data.attributes;
@@ -103,7 +106,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   <div className="container flex flex-row px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
 
   
-  <div className='bg-white'>
+  <div className='bg-white text-center'>
   <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-3xl">
             Our Values   
       </h2>
@@ -127,7 +130,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
 </div>
 <Divider/>
   
-  <div className="px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
+  {/* <div className="px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
   <div className='bg-white'>
   <h2 className="text-3xl text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-3xl">
             Our Team
@@ -140,7 +143,16 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   ))}
   </div>
   </div>
-  </div>
+  </div> */}
+  
+  <div className="px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
+        <div className="bg-white">
+          <h2 className="text-3xl text-center text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-21xl">
+            Our Team
+          </h2>
+          <TeamList teamMembers={TeamData?.data || []} /> 
+        </div>
+      </div>
 
   <Footer/>
 </>

@@ -58,7 +58,7 @@ const CarouselNew = ({BlogPosts}:any) => {
         .carousel-container {
           display: flex;
           height:700px;
-          max-width: 100%;
+           max-width: 100%;
           align: items-center;
         }
 

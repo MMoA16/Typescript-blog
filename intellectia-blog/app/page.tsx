@@ -92,17 +92,32 @@ const Home: NextPage = async() => {
         <Nav logoURL={logoURL}/>
         
         <PracticeCarousel HomePageCarousel={HomePageCarousel.data} missionLine={MissionLine}/>
-        <Link href="https://www.google.com/maps/place/Intelectia+Legal+Firm/@12.961518,77.5925548,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15d13a793489:0xe5f93f75c0c87a66!8m2!3d12.961518!4d77.5951297!16s%2Fg%2F1tdxj98p?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank">
-
-        <div className="font-semibold text-gray-30 rounded-md ShowInMaps">
-          Show In Map
-      
-          <FontAwesomeIcon icon={faLocation} className="fa-solid fa-location-crosshairs fa-2x locIcn">
-            
-          </FontAwesomeIcon>
-          </div>
-        
-              </Link>
+        {/* Enhanced Show in Map Button - Responsive */}
+        <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50">
+          <Link href="https://www.google.com/maps/place/Intelectia+Legal+Firm/@12.961518,77.5925548,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae15d13a793489:0xe5f93f75c0c87a66!8m2!3d12.961518!4d77.5951297!16s%2Fg%2F1tdxj98p?entry=ttu&g_ep=EgoyMDI1MDEyOS4xIKXMDSoASAFQAw%3D%3D" target="_blank">
+            <div className="group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-3 py-2 sm:px-5 sm:py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer flex items-center space-x-1.5 sm:space-x-2.5 min-w-[120px] sm:min-w-[160px]">
+              <div className="bg-white/20 p-1 sm:p-1.5 rounded-full group-hover:bg-white/30 transition-colors duration-300">
+                <FontAwesomeIcon 
+                  icon={faLocation} 
+                  className="text-white text-sm sm:text-base group-hover:animate-pulse"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-xs sm:text-sm uppercase tracking-wide">
+                  Find Us
+                </span>
+                <span className="text-xs opacity-90 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
+                  View on Map
+                </span>
+              </div>
+              <div className="ml-auto opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+        </div>
               
         
         <Mission missionLine ={description}/>
@@ -114,7 +129,7 @@ const Home: NextPage = async() => {
         <Divider/>
         <br></br> */}
         
-          <div className="flex justify-center">
+          <div className="flex justify-center px-4 sm:px-6 lg:px-8">
     
              
               <CarouselNew BlogPosts={strapiBlogData.data}/>

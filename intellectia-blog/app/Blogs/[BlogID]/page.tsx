@@ -20,15 +20,16 @@ async function getStrapiData(url: string) {
 
 
 const Page = async ({ params }: any) => {
-  const strapiData = await getStrapiData("/api/home-page");
+  const strapiData = await getStrapiData("/api/home-page?populate=*");
   const blog = await fetchBlog(params.BlogID);
-  const { Title } = strapiData.data.attributes;
+  const { Title, Logo } = strapiData.data.attributes;
+  const logoURL = "http://localhost:1337" + Logo.data.attributes.url;
   const { title, content, cover } = blog.data.attributes;
   const imageUrl = "http://localhost:1337" + cover?.data?.attributes?.url;
 
   return (
     <>
-      <Nav title={Title} />
+      <Nav logoURL={logoURL} />
       <br></br>
       <BlogContent strapiData={strapiData} blog={blog}/>
       <Footer/>

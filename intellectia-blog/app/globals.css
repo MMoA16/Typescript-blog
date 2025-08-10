@@ -55,32 +55,7 @@ body {
     outline: none;
     border-radius: 4px;
 }
-.ShowInMaps{
-  transition: all .5s ease;
-    color: #fff;
-    border: 2px;
-    font-family:'Montserrat', sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 12px;
-    width: 140px;
-    background-color : #2e5e75;
-    float: right;
-    margin-left: 1300px;
-    border-radius: 15px;
-    margin-top: 30px;
-    position: fixed;
-    height: 40px;
-}
-.ShowInMaps:hover {
-
-  background-color: #14336b;
-}
-.locIcn{
-  padding-left: 10px;
-  padding-top: 5px;
-  color: #fff;
-}
+/* Old ShowInMaps styles removed - now using Tailwind classes */
 
 .GetInTouch:hover {
   color: #001F3F;
@@ -164,8 +139,30 @@ display: flex;
   height: full;
 }
 .mdBlogs{
-  height: 200px;
-  width: 300px;
+  height: auto;
+  width: 100%;
+  max-width: 300px;
+}
+
+@media (max-width: 640px) {
+  .mdBlogs {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .mdBlogs {
+    max-width: 280px;
+    height: auto;
+  }
+}
+
+@media (min-width: 1025px) {
+  .mdBlogs {
+    max-width: 300px;
+    height: auto;
+  }
 }
 .img-fit{
     width: 100%;
@@ -176,11 +173,33 @@ pre{
 
 }
 .mdHome{
-  height:400px;
+  min-height: auto;
+  height: auto;
 }
 .mdHomeImg{
-  width:1200px;
-  height: 600px;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+}
+
+@media (min-width: 640px) {
+  .mdHome {
+    min-height: auto;
+  }
+  .mdHomeImg {
+    max-width: 800px;
+    height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mdHome {
+    min-height: auto;
+  }
+  .mdHomeImg {
+    max-width: 1200px;
+    height: 600px;
+  }
 }
 @media (min-width: 768px) {
   .blog-title {
@@ -224,11 +243,13 @@ pre{
     
   }
   .mdAboutUs{
-    height: 500px;
-    width: 460px;
+    height: auto;
+    width: 100%;
+    max-width: 460px;
   }
   .mdHome{
-    height: 900px;
+    min-height: auto;
+    height: auto;
   }
   
   .mdBlogs{
@@ -236,8 +257,9 @@ pre{
   width: full;
   }
   .mdAboutUsBack{
-    height: 930px;
-    width:500px
+    min-height: auto;
+    height: auto;
+    width: 100%;
   }
   
   .flex-wrap{
@@ -381,8 +403,8 @@ pre{
   
 }
 .logo-image{
-  width:200px;
-  height:100px;
+  width:150px;
+  height:75px;
 }
 
 .card-contentLandingPage  {

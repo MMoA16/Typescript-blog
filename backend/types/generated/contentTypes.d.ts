@@ -855,6 +855,49 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
   };
 }
 
+export interface ApiEnquiryEnquiry extends Schema.CollectionType {
+  collectionName: 'enquiries';
+  info: {
+    singularName: 'enquiry';
+    pluralName: 'enquiries';
+    displayName: 'Enquiry';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    EnquiryType: Attribute.Enumeration<
+      [
+        'Business Partnership',
+        'Media/Press',
+        'Legal',
+        'Services',
+        'Job Queries',
+        'Others'
+      ]
+    >;
+    Email: Attribute.Email;
+    Description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::enquiry.enquiry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::enquiry.enquiry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFaqFaq extends Schema.CollectionType {
   collectionName: 'faqs';
   info: {
@@ -912,6 +955,132 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::home-page.home-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiIntershipApplicationIntershipApplication
+  extends Schema.CollectionType {
+  collectionName: 'intership_applications';
+  info: {
+    singularName: 'intership-application';
+    pluralName: 'intership-applications';
+    displayName: 'IntershipApplication';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    FirstName: Attribute.String;
+    LastName: Attribute.String;
+    Phone: Attribute.BigInteger;
+    Email: Attribute.Email;
+    UniversityName: Attribute.String;
+    GraduationStatus: Attribute.Enumeration<['Graduated', 'Non Graduated']>;
+    AreaOfExpertise: Attribute.Enumeration<
+      [
+        'Corporate',
+        'Employment Law',
+        'Intellectual Property',
+        'Real Estate',
+        'Dispute Resolution',
+        'Tax',
+        'Technology Law',
+        'Government',
+        'Others'
+      ]
+    >;
+    CurrentLocation: Attribute.String;
+    CurrentYear: Attribute.Enumeration<['Three', 'Four', 'Five', 'Completed']>;
+    BatchYear: Attribute.String;
+    UploadResume: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    Description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::intership-application.intership-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::intership-application.intership-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
+  collectionName: 'job_applications';
+  info: {
+    singularName: 'job-application';
+    pluralName: 'job-applications';
+    displayName: 'JobApplication';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    FirstName: Attribute.String;
+    LastName: Attribute.String;
+    Phone: Attribute.BigInteger;
+    Email: Attribute.Email;
+    AreaOfExpertise: Attribute.Enumeration<
+      [
+        'Corporate',
+        'Employment Law',
+        'Intellectual Property',
+        'Real Estate',
+        'Dispute Resolution',
+        'Tax',
+        'Technology Law',
+        'Government',
+        'Others'
+      ]
+    >;
+    JobTitle: Attribute.Enumeration<
+      [
+        'Trainee',
+        'Associate',
+        'Senior Associate',
+        'Group Head',
+        'Partner',
+        'Consultant',
+        'Others'
+      ]
+    >;
+    yearsOfExperience: Attribute.Integer;
+    CurrentLocation: Attribute.String;
+    UniversityName: Attribute.String;
+    BatchYear: Attribute.String;
+    CurrentOrganization: Attribute.String;
+    NoticePeriod: Attribute.String;
+    UploadResume: Attribute.Media<
+      'images' | 'videos' | 'files' | 'audios',
+      true
+    >;
+    Description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::job-application.job-application',
       'oneToOne',
       'admin::user'
     > &
@@ -1014,6 +1183,40 @@ export interface ApiTeamTeam extends Schema.CollectionType {
   };
 }
 
+export interface ApiTeamMemberTeamMember extends Schema.CollectionType {
+  collectionName: 'team_members';
+  info: {
+    singularName: 'team-member';
+    pluralName: 'team-members';
+    displayName: 'Team Member';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    TeamMemberName: Attribute.String;
+    TeamMemberDesignation: Attribute.String;
+    TeamMemberPhoto: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    TeamMemberNumber: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::team-member.team-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::team-member.team-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1034,11 +1237,15 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::author.author': ApiAuthorAuthor;
+      'api::enquiry.enquiry': ApiEnquiryEnquiry;
       'api::faq.faq': ApiFaqFaq;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::intership-application.intership-application': ApiIntershipApplicationIntershipApplication;
+      'api::job-application.job-application': ApiJobApplicationJobApplication;
       'api::post.post': ApiPostPost;
       'api::practice-area.practice-area': ApiPracticeAreaPracticeArea;
       'api::team.team': ApiTeamTeam;
+      'api::team-member.team-member': ApiTeamMemberTeamMember;
     }
   }
 }

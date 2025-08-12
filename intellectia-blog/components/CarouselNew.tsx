@@ -69,15 +69,9 @@ const CarouselNew = ({BlogPosts}:any) => {
     <style>{`
         .carousel-container {
           display: flex;
-          min-height: 400px;
-          max-width: 100%;
-          align-items: center;
-        }
-        
-        @media (min-width: 768px) {
-          .carousel-container {
-            height: 700px;
-          }
+          height:700px;
+           max-width: 100%;
+          align: items-center;
         }
 
         .carousel {

@@ -36,13 +36,27 @@ module.exports = {
       lg: "18px",
       base: "16px",
       xl: "22px",
+      "17xl":"26px",
       "19xl":"32px",
+      "18xl":"30px",
       "20xl":"36px",
       "21xl": "40px",
+      "24xl":"52px",
+      "100xl":"100px",
+      "108xl":"124px",
       "109xl": "128px",
       "5xl": "24px",
       "3xl":"18px",
       inherit: "inherit",
+    },
+      animation: {
+      modalFadeIn: "fadeIn 0.3s ease-out forwards",
+    },
+    keyframes: {
+      fadeIn: {
+        '0%': { opacity: 0, transform: 'scale(0.95)' },
+        '100%': { opacity: 1, transform: 'scale(1)' },
+      },
     },
     
   },

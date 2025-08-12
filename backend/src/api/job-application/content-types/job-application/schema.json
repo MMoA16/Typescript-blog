@@ -1,0 +1,86 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_applications",
+  "info": {
+    "singularName": "job-application",
+    "pluralName": "job-applications",
+    "displayName": "JobApplication",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "biginteger"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "AreaOfExpertise": {
+      "type": "enumeration",
+      "enum": [
+        "Corporate",
+        "Employment Law",
+        "Intellectual Property",
+        "Real Estate",
+        "Dispute Resolution",
+        "Tax",
+        "Technology Law",
+        "Government",
+        "Others"
+      ]
+    },
+    "JobTitle": {
+      "type": "enumeration",
+      "enum": [
+        "Trainee",
+        "Associate",
+        "Senior Associate",
+        "Group Head",
+        "Partner",
+        "Consultant",
+        "Others"
+      ]
+    },
+    "yearsOfExperience": {
+      "type": "integer"
+    },
+    "CurrentLocation": {
+      "type": "string"
+    },
+    "UniversityName": {
+      "type": "string"
+    },
+    "BatchYear": {
+      "type": "string"
+    },
+    "CurrentOrganization": {
+      "type": "string"
+    },
+    "NoticePeriod": {
+      "type": "string"
+    },
+    "UploadResume": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "files",
+        "audios"
+      ]
+    },
+    "Description": {
+      "type": "string"
+    }
+  }
+}

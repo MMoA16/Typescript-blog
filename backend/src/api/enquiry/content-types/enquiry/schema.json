@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "enquiries",
+  "info": {
+    "singularName": "enquiry",
+    "pluralName": "enquiries",
+    "displayName": "Enquiry",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "EnquiryType": {
+      "type": "enumeration",
+      "enum": [
+        "Business Partnership",
+        "Media/Press",
+        "Legal",
+        "Services",
+        "Job Queries",
+        "Others"
+      ]
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Description": {
+      "type": "string"
+    }
+  }
+}

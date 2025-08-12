@@ -11,6 +11,7 @@ import { Divide } from "lucide-react";
 import Divider from "@/components/divider";
 import Card from "@/components/Card";
 import Footer from "@/components/Footer/Footer";
+import TeamList from "@/components/TeamList";
 
 interface ImageProps {
   id: number
@@ -40,6 +41,8 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   console.log("hujioj");
   const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
   const strapiAboutData = await getStrapiData("/api/teams?populate=*");
+  const TeamData = await getStrapiData("/api/team-members?populate=*");
+
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
   //console.log("hujioj",strapiAboutUs.data.attributes);
   const { Title, MissionLine, desc, Logo} = strapiHomeData.data.attributes;
@@ -100,14 +103,19 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   {/* </div> */}
   <Vision />
   <Divider/>
+
+            {/* <div className="mt-4 mb-4">
+                <div className="w-full h-px sm:h-0.5 bg-black" />
+              </div> */}
+
   <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-8 sm:py-10 lg:py-16">
 
   
-  <div className='bg-white'>
-  <h2 className="text-2xl sm:text-3xl lg:text-4xl px-4 sm:px-6 dark:text-black font-dm-sans text-center lg:text-left">
+  <div className='bg-white text-center'>
+  <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-3xl">
             Our Values   
       </h2>
-    <div className='max-w-4xl mx-auto px-4 sm:px-6 mdN'>
+    <div className='max-w-4xl mx-auto text-center  px-6 md:px-6 mdN'>
       <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify leading-relaxed">
         Driven by hunger for intellectual stimulation, we are constantly involved in researching ideas, conducting qualitative and quantitative analysis and applying complex frameworks to solve knotty problems. Our primary goal is to help people and their businesses. We built trust because of our will to help our clients accomplish their goals. Our role is to assist organization in critical areas of their inclusiveness work. We act as an educator, a catalyst for deeper change, a resource or a facilitator, the leadership of the process remains within your organization. We act as an extension of in-house legal cell or as independent legal consultants. Our efforts are towards being strategic partners for our clients growth and not just be a consulting firm.
           </p>
@@ -125,9 +133,9 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
     </div>
   </div>
 </div>
-<Divider/>
+{/* <Divider/> */}
   
-  <div className="px-4 sm:px-6 lg:px-8 xl:px-20 py-8 sm:py-10 lg:py-16 mx-auto">
+  {/* <div className="px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
   <div className='bg-white'>
   <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-800 dark:text-text-black px-4 sm:px-6 font-dm-sans text-center lg:text-left mb-6 sm:mb-8">
             Our Team
@@ -140,7 +148,16 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   ))}
   </div>
   </div>
-  </div>
+  </div> */}
+  
+   <div className="bg-gray-100 px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
+         <div className=" text-center">
+           <h2 className="text-3xl  text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-21xl">
+             Our Team
+           </h2>
+           <TeamList teamMembers={TeamData?.data || []} /> 
+         </div>
+       </div>
 
   <Footer/>
 </>

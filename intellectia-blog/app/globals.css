@@ -1,8 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply leading-[normal] m-0;
 }
@@ -11,6 +17,11 @@ body {
 ::after {
   border-width: 0;
 }
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
 /* Blog Post Container */
 .blog-container {
   max-width: 72rem;
@@ -172,6 +183,10 @@ pre{
   white-space: pre-wrap; /* Wraps text to fit the container */
 
 }
+
+
+
+
 .mdHome{
   min-height: auto;
   height: auto;

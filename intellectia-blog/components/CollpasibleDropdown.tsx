@@ -18,7 +18,7 @@ const CollapsibleDropdown: React.FC<Props> = ({ title, children }) => {
     <div className="w-full border font-dm-sans rounded-xl mb-4 shadow">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center p-4 font-semibold font-text-left font-semibold text-lg focus:outline-none"
+        className="w-full flex justify-between items-center p-4 font-semibold font-text-left  text-lg focus:outline-none"
       >
         {title}
         {isOpen ? <ChevronUp /> : <ChevronDown />}

@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "intership_applications",
+  "info": {
+    "singularName": "intership-application",
+    "pluralName": "intership-applications",
+    "displayName": "IntershipApplication"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "biginteger"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "UniversityName": {
+      "type": "string"
+    },
+    "GraduationStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Graduated",
+        "Non Graduated"
+      ]
+    },
+    "AreaOfExpertise": {
+      "type": "enumeration",
+      "enum": [
+        "Corporate",
+        "Employment Law",
+        "Intellectual Property",
+        "Real Estate",
+        "Dispute Resolution",
+        "Tax",
+        "Technology Law",
+        "Government",
+        "Others"
+      ]
+    },
+    "CurrentLocation": {
+      "type": "string"
+    },
+    "CurrentYear": {
+      "type": "enumeration",
+      "enum": [
+        "Three",
+        "Four",
+        "Five",
+        "Completed"
+      ]
+    },
+    "BatchYear": {
+      "type": "string"
+    },
+    "UploadResume": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "Description": {
+      "type": "string"
+    }
+  }
+}

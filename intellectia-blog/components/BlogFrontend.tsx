@@ -6,9 +6,9 @@ import React from "react";
 import BlogCard from "./BlogCard";
 const BlogFrontend = ({ strapiBlogData }: any) => {
     return(
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
             <motion.div
-            className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
             initial="hidden"
             animate="visible"
             variants={{
@@ -28,6 +28,7 @@ const BlogFrontend = ({ strapiBlogData }: any) => {
                     visible: { opacity: 1, y: 0 },
                 }}
                 transition={{ duration: 0.4 }}
+                className="w-full"
                 >
                 <BlogCard BlogData={category} />
                 </motion.div>

@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Link from 'next/link';
 
 const CardNew = ({ BlogPosts }: any ) => {
 const imageUrl = "http://localhost:1337" + BlogPosts.attributes.PracticeAreaImage.data.attributes.url;
@@ -21,7 +22,9 @@ const desc = BlogPosts.attributes.Description;
           <p className="card-description">
             {desc}
           </p>
-          <button className="card-button">Read More</button>
+          <Link href={`/Practices/${BlogPosts.id}`}>
+            <button className="card-button">Read More</button>
+          </Link>
         </div>
       </div>
           

@@ -33,22 +33,34 @@ const CarouselNew = ({BlogPosts}:any) => {
     <div className="carousel-container ">
    
     
-    <div className="controls items-center flex flex-dir1 transition-transform duration-500 ptx-50">
-      <div>
+    <div className="controls items-center flex flex-col md:flex-row transition-transform duration-500 px-4 sm:px-8 md:px-16 lg:px-20">
+      <div className="hidden md:block">
     <button onClick={goPrev} className="control-prev transform -translate-y-1/2">
      <FaChevronLeft size={30} />
      </button>
     </div>
-<div>
+<div className="w-full md:w-auto">
       <CardNew BlogPosts={BlogPosts[currentIndex]} alt="Carousel Image" />
 </div>
-<div>
-          <CardNew BlogPosts={BlogPosts[currentIndex + 1]} alt="Carousel Image" />
-</div>
-     <div>
+{BlogPosts[currentIndex + 1] && (
+  <div className="w-full md:w-auto hidden md:block">
+    <CardNew BlogPosts={BlogPosts[currentIndex + 1]} alt="Carousel Image" />
+  </div>
+)}
+     <div className="hidden md:block">
      <button onClick={goNext} className="control-next transform -translate-y-1/2">
         <FaChevronRight size={30} />
      </button>
+      </div>
+      
+      {/* Mobile navigation buttons */}
+      <div className="flex justify-between w-full mt-4 md:hidden">
+        <button onClick={goPrev} className="control-prev bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full">
+          <FaChevronLeft size={20} />
+        </button>
+        <button onClick={goNext} className="control-next bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full">
+          <FaChevronRight size={20} />
+        </button>
       </div>
      </div>
       
@@ -63,33 +75,47 @@ const CarouselNew = ({BlogPosts}:any) => {
         }
 
         .carousel {
-          
-          width: 600px;
+          width: 100%;
+          max-width: 600px;
           height: 300px;
         }
-
-        .ptx-50{
-        padding-left:80px;
-        padding-right:70px;
+        
+        @media (max-width: 767px) {
+          .carousel {
+            height: 250px;
+          }
         }
 
         .controls {
           top: 50%;
-          width: 10%;
+          width: 100%;
           display: flex;
           justify-content: space-between;
-          padding-top:40px;
-          padding-bottom:40px;
+          padding: 20px 0;
+        }
+        
+        @media (min-width: 768px) {
+          .controls {
+            padding: 40px 0;
+          }
         }
 
         .control-prev, .control-next {
-          height:50px;
+          height: 40px;
           border: none;
           color: white;
           padding: 5px;
           cursor: pointer;
-          font-size: 18px;
+          font-size: 16px;
           transition: background 0.3s;
+          border-radius: 50%;
+        }
+        
+        @media (min-width: 768px) {
+          .control-prev, .control-next {
+            height: 50px;
+            font-size: 18px;
+          }
         }
 
         .control-prev:hover, .control-next:hover {

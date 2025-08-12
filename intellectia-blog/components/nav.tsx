@@ -33,11 +33,13 @@ const Nav: NextPage<NavType> = ({ className = "",logoURL}) => {
     isActive ? activeClassName : "navlink";
   return (
     <div
-      className={`flex dark:bg-gray-800 flex-wrap items-center justify-between px-20 text-left text-5xl font-dm-sans${className}`}
+      className={`flex dark:bg-gray-800 flex-wrap items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 text-left text-5xl font-dm-sans${className}`}
     >
       <div className="flex flex-col items-start justify-start p-2 box-border">
         <div className="w-119xl text-bold flex-1 relative">
-          <img src={imageURL} className="logo-image"></img>
+          <Link href="/" className="cursor-pointer">
+            <img src={imageURL} className="logo-image" alt="Logo"></img>
+          </Link>
         </div>
       </div>
         <div className="w-1/2 self-stretch flex-row items-start justify-between gap-[60px] text-3xl mhidden md1">

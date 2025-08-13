@@ -35,10 +35,10 @@ export default function CareersHero() {
       if (scrollTop <= firstSectionBottom) {
         setScrollProgress(0);
       } else if (scrollTop >= footerTop) {
-        setScrollProgress(180);
+        setScrollProgress(130);
       } else {
         const scrolledPastFirstSection = scrollTop - firstSectionBottom;
-        const progress = (scrolledPastFirstSection / scrollableDistance) * 180;
+        const progress = (scrolledPastFirstSection / scrollableDistance) * 130;
         setScrollProgress(Math.min(Math.max(progress, 0), 100));
       }
     };

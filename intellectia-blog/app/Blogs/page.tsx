@@ -30,7 +30,8 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
     
     {/* Page Header */}
     <div className="bg-gradient-to-r from-blue-50 to-indigo-100 py-8 sm:py-12 lg:py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        {/* <div className="container mx-auto px-4 sm:px-6 lg:px-8"> */}
         <div className="text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Resources & <span className="text-blue-600">Insights</span>

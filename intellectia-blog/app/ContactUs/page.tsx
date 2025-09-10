@@ -30,19 +30,19 @@ async function getStrapiData(url: string) {
 const ContactUs: NextPage<ContactContainerType> = () => {
   const [logoURL, setLogoURL] = useState("");
   const [formData, setFormData] = useState({
-    firstName: "",
+    name: "",
     email: "",
     message: "",
   });
 
   const [errors, setErrors] = useState({
-    firstName: "",
+    name: "",
     email: "",
     message: "",
   });
 
 
-
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -74,7 +74,7 @@ const ContactUs: NextPage<ContactContainerType> = () => {
       e.preventDefault();
       const newErrors: any = {};
 
-      if (!formData.firstName.trim()) newErrors.firstName = "First Name is required.";
+      if (!formData.name.trim()) newErrors.name = "Name is required.";
       if (!formData.email.trim()) newErrors.email = "Email is required.";
       if (!formData.message.trim()) newErrors.message = "Message is required.";
 
@@ -84,7 +84,7 @@ const ContactUs: NextPage<ContactContainerType> = () => {
       }
 
       try {
-        const response = await fetch("/api/contact", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/contact/send`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -94,7 +94,7 @@ const ContactUs: NextPage<ContactContainerType> = () => {
           setModalType("success");
           setIsError(false); // Success
           setModalMessage("Thanks! We've received your message.");
-          setFormData({ firstName: "", email: "", message: "" });
+          setFormData({ name: "", email: "", message: "" });
         } else {
           setModalType("error");
           setIsError(true); // Error
@@ -188,22 +188,25 @@ const ContactUs: NextPage<ContactContainerType> = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-700 no-underline"
               >
-                <MapPin className="w-6 h-6 no-underline" />
+                <MapPin className="w-8 h-8 no-underline" />
                 <p className="no-underline text-base md:text-lg">
-                  123 Main Street, Mumbai, Maharashtra, India
+                  #35/6, Krishna Residency, Langford Road Cross, Bengaluru 560025
                 </p>
               </a>
             </div>
             <div className="flex items-center gap-3 mb-3">
-              <a href="tel:+919876543210" className="flex items-center gap-3 text-gray-700 no-underline">
+              <a href="tel:+919845097323" className="flex items-center gap-3 text-gray-700 no-underline">
                 <Phone className="w-6 h-6" />
-                <p className="text-base md:text-lg">+91-9876543210</p>
+                <p className="text-base md:text-lg">+91-9845097323</p>
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <a href="mailto:contact@bodhankarassociates.com" className="flex items-center gap-3 text-gray-700 no-underline">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@intelectia.net"
+                 target="_blank"
+                 rel="noopener noreferrer" 
+                 className="flex items-center gap-3 text-gray-700 no-underline">
                 <Mail className="w-6 h-6" />
-                <p className="text-base md:text-lg">contact@bodhankarassociates.com</p>
+                <p className="text-base md:text-lg">info@intelectia.net</p>
               </a>
             </div>
           </div>
@@ -226,12 +229,12 @@ const ContactUs: NextPage<ContactContainerType> = () => {
                 <label className="block text-sm font-medium mb-1 -ml-2">Enter your name</label>
                 <input
                   type="text"
-                  name="firstName"
-                  value={formData.firstName}
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   className="w-full border font-dm-sans border-gray-400 rounded-sm p-3 focus:outline-none focus:ring-2 focus:ring-[#b43a2f] -ml-2"
                 />
-                {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
 
               <div>

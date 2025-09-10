@@ -47,14 +47,14 @@ export default function CareersSection() {
                 <h2 className="text-lg font-semibold">{job.title}</h2>
                 <p className="text-sm text-gray-600 mb-3">{job.desc}</p>
                 <div className="flex gap-2 text-sm flex-wrap">
-                  {job.tags.map((tag, tagIdx) => (
+                  {/* {job.tags.map((tag, tagIdx) => (
                     <button
                       key={tagIdx}
                       className="border border-black cursor-pointer rounded-full px-5 py-3 font-semibold font-dm-sans hover:bg-gray-100 transition"
                     >
                       {tag}
                     </button>
-                  ))}
+                  ))} */}
                 </div>
               </div>
 

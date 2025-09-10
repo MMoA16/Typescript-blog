@@ -9,7 +9,7 @@ const Divider: NextPage<DividerType> = ({ className = "" }) => {
     <div
       className={`container self-stretch flex flex-row items-center justify-start mdN -px-5 ${className}`}
     >
-      <div className="flex-1 bg-black h-px" />
+      <div className="flex-1  bg-black h-px" />
     </div>
   );
 };

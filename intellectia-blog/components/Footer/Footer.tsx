@@ -41,11 +41,15 @@ const Footer = (): JSX.Element => {
 									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
 									community
 								</a>
-								<a
-									href="#"
+								{/* <a
+									href="#Careers"
 									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
 									Careers
-								</a>
+								</a> */}
+
+								<Link href="/ContactUs/Careers" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+								Careers
+								</Link>
 							</div>
 
 							<div>

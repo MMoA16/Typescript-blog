@@ -1,19 +1,23 @@
 module.exports = ({ env }) => ({
-  // ...
   email: {
     config: {
-      provider: "strapi-provider-email-mailjet",
-        providerOptions: {
-          publicApiKey: env("MAILJET_PUBLIC_KEY"),
-          secretApiKey: env("MAILJET_SECRET_KEY"),
-        },
-        settings: {
-          defaultFrom: "Intellectia Firm",
-          defaultFromName: "Deepak Baligar",
-        //   defaultTo: "john.doe@ijs.to",
-        //   defaultToName: "Johnny Bravodoe",
+      provider: "nodemailer",
+      providerOptions: {
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: env("SMTP_USER"),
+          pass: env("SMTP_PASS"),
         },
       },
-      // ...
-    }
+      settings: {
+        defaultFrom: env("SMTP_USER"),
+        defaultReplyTo: env("SMTP_USER"),
+      },
+    },
+  },
+  "email-designer": {
+    enabled: true,
+  },
 });

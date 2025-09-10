@@ -48,6 +48,8 @@ module.exports = {
       "109xl": "128px",
       "5xl": "24px",
       "3xl":"18px",
+      "2xl":"15px",
+      "small":"12px",
       inherit: "inherit",
     },
       animation: {

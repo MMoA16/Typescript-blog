@@ -1,8 +1,9 @@
 
 'use client';
 import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 import { usePathname } from "next/navigation";
+import * as React from "react";
 interface ApplicationFormProps {
   onClose: () => void;
 }
@@ -25,6 +26,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
   const [noticePeriod, setNoticePeriod] = useState('');
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [error, setError] = React.useState<string>("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -70,15 +72,35 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
   };
 
   // File upload
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedFile(e.target.files[0]);
-    }
-  };
+   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+          const file = e.target.files[0];
+          const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+          const allowedExtensions = /(\.pdf|\.docx)$/i;
 
-  const handleRemoveFile = () => {
-    setSelectedFile(null);
-  };
+          const fileNameRegex = /^[A-Za-z]+_Resume\.(pdf|docx)$/i;
+  
+          if (file.size > maxSize) {
+            setError("File size exceeds the 5MB limit. Please choose a smaller file.");
+            setSelectedFile(null);
+          }else if (!allowedExtensions.test(file.name)) {
+          setError("Not a PDF or DOCX. Please upload a file in PDF or DOCX format.");
+          setSelectedFile(null);}
+          else if (!fileNameRegex.test(file.name)) {
+            setError('Invalid file name. Rename as "YourName_Resume.pdf" or ".docx".');
+            setSelectedFile(null);
+          }
+           else {
+            setSelectedFile(file);
+            setError(""); 
+          }
+        }
+      };
+  
+      const handleRemoveFile = () => {
+        setSelectedFile(null);
+        setErrorMessage("");
+      };
 
   // Reset form
   const handleReset = () => {
@@ -437,8 +459,11 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
             <div>
               <label className="block text-sm font-medium text-black mb-1 text-left ml-1">Batch</label>
               <input
-                type="text"
+                type="number"
                 placeholder="2025"
+                min="2000"
+                max="2099"
+                step="1"
                 value={batch}
                 onChange={(e) => handleChange('batch', e.target.value)}
                 className={`w-11/12 border rounded-md px-3 py-2 text-sm font-dm-sans focus:outline-none focus:ring-2 ${
@@ -489,8 +514,13 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
             >
               {!selectedFile ? (
                 <>
-                  <p className="mb-2">Choose a file or drag & drop it here.</p>
-                  <p className="mb-4">pdf, doc, docx, jpeg – Up to 50MB</p>
+                  <p className="mb-2 text-gray-500">Choose a file or drag & drop it here.</p>
+                  <p className="mb-4 text-gray-500">pdf, doc, docx, – Up to 5MB</p>
+                  <p className="mb-4 text-gray-500">Please ensure your uploaded resume is named using the format: "YourName_Resume.pdf"</p>
+                 {error && (
+                    <p className="mb-4 text-red-600 text-2xl">{error}</p>
+                  )}
+                 
                   <label htmlFor="resumeUpload">
                     <span className="bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-opacity-85 cursor-pointer">
                       Browse Files
@@ -501,11 +531,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
                     type="file"
                     accept=".pdf,.doc,.docx,.jpeg,.jpg"
                     className="hidden"
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files.length > 0) {
-                        handleChange('selectedFile', e.target.files[0]);
-                      }
-                    }}
+                    onChange={handleFileChange}
                   />
                 </>
               ) : (
@@ -513,14 +539,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
                   <span className="truncate">{selectedFile.name}</span>
                   <button
                     type="button"
-                    onClick={() => {
-                      setSelectedFile(null);
-                      setErrors((prev) => {
-                        const copy = { ...prev };
-                        delete copy.selectedFile;
-                        return copy;
-                      });
-                    }}
+                    onClick={handleRemoveFile}
                     className="text-red-600 text-xs hover:underline"
                   >
                     Remove

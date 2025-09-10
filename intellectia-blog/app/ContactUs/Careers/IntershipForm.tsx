@@ -1,15 +1,16 @@
 'use client';
 import { useState,useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 import { usePathname } from "next/navigation";
+import * as React from "react";
 
 interface InternshipFormProps {
   onClose: () => void;
 }
 
-const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+// const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+// const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+// const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [firstName, setFirstName] = useState('');
@@ -25,6 +26,7 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [practise,setPractise] = useState('');
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [error, setError] = React.useState<string>("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -102,13 +104,38 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
       });
     }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedFile(e.target.files[0]);
-    }
-  };
 
-  const handleRemoveFile = () => setSelectedFile(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files.length > 0) {
+        const file = e.target.files[0];
+        const maxSize = 5 * 1024 * 1024; 
+
+        const allowedExtensions = /(\.pdf|\.docx)$/i;
+
+         const fileNameRegex = /^[A-Za-z]+_Resume\.(pdf|docx)$/i;
+
+        if (file.size > maxSize) {
+          setError("File size exceeds the 5MB limit. Please choose a smaller file.");
+          setSelectedFile(null);
+        } else if (!allowedExtensions.test(file.name)) {
+          setError("Not a PDF or DOCX. Please upload a file in PDF or DOCX format.");
+          setSelectedFile(null);}
+          else if (!fileNameRegex.test(file.name)) {
+            setError('Invalid file name. Rename as "YourName_Resume.pdf" or ".docx".');
+            setSelectedFile(null);
+          }
+           else {
+          setSelectedFile(file);
+          setError(""); // clear previous error
+        }
+      }
+    };
+
+    const handleRemoveFile = () => {
+      setSelectedFile(null);
+      setErrorMessage("");
+    };
 
   const handleReset = () => {
     setFirstName('');
@@ -348,7 +375,7 @@ const handleSubmit = async () => {
                 onChange={(e) => handleChange('email',  e.target.value.toLowerCase())}
                 pattern="[a-z0-9._%+-]+@gmail\.com$"
                 className={`w-11/12 border lowercase rounded-md px-3 py-2 text-sm font-dm-sans focus:outline-none focus:ring-2 ${
-                errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-400 focus:ring-gray-900'
+                errors.email ?  ' border-red-500 focus:ring-red-500' : 'border-gray-400 focus:ring-gray-900'
                 }`}
               />
               {errors.email && <p className="text-red-600 text-xs mt-1 ml-1 text-left">{errors.email}</p>}
@@ -449,9 +476,12 @@ const handleSubmit = async () => {
             <div>
               <label className="block text-sm font-medium text-black mb-1 text-left ml-1">Batch Year</label>
               <input
-                type="text"
+                type="number"
                 placeholder="2025"
                 value={batch}
+                min="2000"
+                max="2099"
+                step="1"
                 onChange={(e) => handleChange('batch', e.target.value)}
                 className={`w-11/12 border rounded-md px-3 py-2 text-sm font-dm-sans focus:outline-none focus:ring-2 ${
                   errors.batch ? 'border-red-600 focus:ring-red-600' : 'border-gray-400 focus:ring-gray-900'
@@ -469,8 +499,14 @@ const handleSubmit = async () => {
             >
               {!selectedFile ? (
                 <>
-                  <p className="mb-2">Choose a file or drag & drop it here.</p>
-                  <p className="mb-4">pdf, doc, docx, jpeg – Up to 50MB</p>
+                  <p className="mb-2 text-gray-500">Choose a file or drag & drop it here.</p>
+                  <p className="mb-4 text-gray-500">pdf, doc, docx – Up to 5MB</p>
+                  <p className="mb-4 text-gray-500">Please ensure your uploaded resume is named using the format: "YourName_Resume.pdf"</p>
+                 
+                  {error && (
+                    <p className="mb-4 text-red-600 text-2xl">{error}</p>
+                  )}
+
                   <label htmlFor="resumeUpload">
                     <span className="bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-opacity-85 cursor-pointer">
                       Browse Files

@@ -274,7 +274,8 @@ pre{
   .mdAboutUsBack{
     min-height: auto;
     height: auto;
-    width: 92.3%;;
+    /* width: 92%; */
+    width: auto;
   }
   
   .flex-wrap{

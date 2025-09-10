@@ -108,8 +108,10 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
                 <div className="w-full h-px sm:h-0.5 bg-black" />
               </div> */}
 
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-8 sm:py-10 lg:py-16">
-
+  
+  {/* <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-8 sm:py-10 lg:py-16"> */}
+    <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-8 sm:py-10 lg:py-16">
+   
   
   <div className='bg-white text-center'>
   <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-3xl">

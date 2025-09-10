@@ -38,8 +38,8 @@ const Practice: NextPage<PracticeContainerType> = async () => {
     return (  
         <>
         <Nav  logoURL={logoURL} />
-        
-        <div className="container flex flex-wrap justify-center gap-[20px] p-4 px-20" >
+        <div className="flex flex-wrap justify-center gap-[20px] p-4 px-20" >
+        {/* <div className="container flex flex-wrap justify-center gap-[20px] p-4 px-20" > */}
         {strapipracticearea?.data?.map((teamMember: any) => (
         
           <CardNewPracticeArea key={teamMember.id} BlogPosts={teamMember} />

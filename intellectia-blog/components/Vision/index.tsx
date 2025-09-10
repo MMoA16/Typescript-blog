@@ -1,7 +1,10 @@
 const Vision = (): JSX.Element => {
 	return (
 		<div className="flex flex-col text-center w-full mb-20 mdN">
-			<div className="container p-4 mx-auto text-center">
+			{/* <div className="container p-4 mx-auto text-center">
+				<h2 className="text-4xl dark:text-black mt-8 font-dm-sans">Vision</h2>
+			</div> */}
+			<div className="p-4 mx-auto text-center">
 				<h2 className="text-4xl dark:text-black mt-8 font-dm-sans">Vision</h2>
 			</div>
 

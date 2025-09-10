@@ -42,6 +42,7 @@ module.exports = {
       "20xl":"36px",
       "21xl": "40px",
       "24xl":"52px",
+      "90xl":"90px",
       "100xl":"100px",
       "108xl":"124px",
       "109xl": "128px",

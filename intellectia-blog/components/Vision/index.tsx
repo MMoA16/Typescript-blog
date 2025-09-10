@@ -6,7 +6,7 @@ const Vision = (): JSX.Element => {
 			</div>
 
 			<section className="text-gray-600 body-font">
-				<div className="container px-5 py-2 mx-auto">
+				<div className="px-5 py-2 mx-auto">
 					<div className="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

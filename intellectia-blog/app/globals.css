@@ -274,7 +274,7 @@ pre{
   .mdAboutUsBack{
     min-height: auto;
     height: auto;
-    width: 100%;
+    width: 92.3%;;
   }
   
   .flex-wrap{
@@ -418,8 +418,8 @@ pre{
   
 }
 .logo-image{
-  width:150px;
-  height:75px;
+  width:120px;
+  height:120px;
 }
 
 .card-contentLandingPage  {

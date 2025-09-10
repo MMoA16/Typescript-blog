@@ -58,7 +58,7 @@ const Nav: NextPage<NavType> = ({ className = "",logoURL}) => {
       </div>    
       </div>
       <div className="flex flex-wrap justify-end mhidden">
-        <button onClick={toggleNavbar}>{isOpen ? <X /> : <Menu />}</button>
+        <button className="bg-gray-800 text-gray-100 " onClick={toggleNavbar}>{isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}</button>
 
       </div>
       <AnimatePresence mode="wait">

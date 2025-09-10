@@ -6,6 +6,7 @@ interface TeamMember {
   attributes: {
     TeamMemberName: string;
     TeamMemberDesignation: string;
+    TeamMemberNumber: string;
     TeamMemberPhoto?: {
       data?: {
         attributes: {
@@ -43,8 +44,15 @@ const Card = ({ teamMember }: { teamMember: TeamMember }) => {
 };
 
 export default function TeamList({ teamMembers }: { teamMembers: TeamMember[] }) {
+
+  //   const sortedMembers = [...teamMembers].sort((a, b) => {
+  //   const numA = (a.attributes as any).TeamMemberNumber ?? 0;
+  //   const numB = (b.attributes as any).TeamMemberNumber ?? 0;
+  //   return numA - numB;
+  // });
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {teamMembers.map((member) => (
         <Card key={member.id} teamMember={member} />
       ))}

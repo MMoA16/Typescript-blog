@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Nav from "@/components/nav";
+import type { NextPage } from "next";
 import Footer from "@/components/Footer/Footer";
 import { FaLinkedinIn, FaFacebookSquare, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -8,11 +10,33 @@ import InternshipForm from "@/app/ContactUs/Careers/IntershipForm";
 import ApplicationForm from "@/app/ContactUs/ApplicationForm";
 import SlidingToggleButtons from "@/app/ContactUs/Careers/SlideToggleButtons";
 
+async function getStrapiData(url: string) {
+  const baseURL = "http://localhost:1337";
+  try {
+    const response = await fetch(baseURL + url, { cache: "no-cache" });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default function CareersHero() {
+  const [logoURL, setLogoURL] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
   const firstSectionRef = useRef<HTMLElement>(null);
   const footerRef = useRef<HTMLElement>(null);
   const [activeForm, setActiveForm] = useState<"internship" | "jobs" | null>(null);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
+      const { Logo } = strapiHomeData.data.attributes;
+      setLogoURL("http://localhost:1337" + Logo.data.attributes.url);
+    };
+    fetchData();
+  }, []);
 
 
   useEffect(() => {
@@ -35,10 +59,10 @@ export default function CareersHero() {
       if (scrollTop <= firstSectionBottom) {
         setScrollProgress(0);
       } else if (scrollTop >= footerTop) {
-        setScrollProgress(180);
+        setScrollProgress(130);
       } else {
         const scrolledPastFirstSection = scrollTop - firstSectionBottom;
-        const progress = (scrolledPastFirstSection / scrollableDistance) * 180;
+        const progress = (scrolledPastFirstSection / scrollableDistance) * 130;
         setScrollProgress(Math.min(Math.max(progress, 0), 100));
       }
     };
@@ -50,36 +74,50 @@ export default function CareersHero() {
   }, []);
 
   return (
+    <>
+
+    
     <div>
-      {/* First Section */}
-      <section ref={firstSectionRef} className="relative w-full h-[71vh] md:h-[95vh]">
+
+       <section>
+        <Nav logoURL={logoURL} />
+       </section>
+      
+      <section ref={firstSectionRef} className="bg-gray-800 relative w-full h-[76vh] md:h-[70vh] lg:h-[75vh]">
         {/* Background Image */}
-        <img
+        {/* <img
           src="/images/law.jpg"
           alt="Person working"
           className="w-full h-full object-cover"
-        />
+        /> */}
+
+        
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* <div className="absolute inset-0 bg-black/40"></div> */}
 
         {/* Top Left Title */}
-        <div className="absolute -top-3 left-3 lg:-top-2 lg:left-8 z-10">
+        {/* <div className="absolute -top-3 left-3 lg:-top-2 lg:left-8 z-10">
           <h2 className="text-white text-xl lg:text-18xl font-bold font-inter">
             Intellectia Firm
             <span className="text-21xl text-[#a2c60f]">.</span>
           </h2>
-        </div>
+        </div> */}
 
-        {/* Center Text */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-white text-24xl lg:text-108xl font-bold font-dm-sans tracking-wide">
+        
+        <div className="absolute inset-0 flex flex-col items-center justify-center mt-5">
+          <h1 className="text-white text-24xl md:text-90xl  font-bold font-dm-sans tracking-wide">
             Careers
           </h1>
-        </div>
 
-        {/* Social Icons */}
-        <div className="absolute bottom-6 left-2 md:left-8 flex flex-row md:flex-col items-center gap-4 z-10">
+        
+          <p className="flex-1 text-white text-base md:text-lg font-normal md:font-medium
+           font-dm-sans mt-3 md:-mt-14  md:ml-0 px-3 text-center tracking-wide">Be part of a firm where
+           legal excellence, professional growth, and integrity come together to shape meaningful careers.</p>
+       
+      </div>
+        
+        <div className="absolute bottom-6 left-3 md:left-8 flex flex-row md:flex-col items-center gap-4 z-10">
           {[
             { icon: <FaLinkedinIn />, link: "https://www.linkedin.com" },
             { icon: <FaFacebookSquare />, link: "https://www.facebook.com" },
@@ -98,7 +136,7 @@ export default function CareersHero() {
           ))}
         </div>
 
-         <div className="absolute bottom-8 md:bottom-10 right-2 md:right-6 z-10">
+         <div className="absolute bottom-8 md:bottom-10 right-2 md:right-5 z-10">
               <a
                 href="#"
                 onClick={(e) => {
@@ -107,7 +145,7 @@ export default function CareersHero() {
                 }}
                 className="px-6 py-3 bg-black text-white no-underline font-dm-sans font-semibold rounded-full shadow-lg hover:bg-white hover:text-gray-800 transition-colors duration-300"
               >
-                Apply Jobs
+                Apply Now
               </a>
             </div>
 
@@ -124,23 +162,29 @@ export default function CareersHero() {
       </div>
 
       {/* Content Section */}
-      <section className="bg-white py-20 px-6 md:px-20 text-center">
-        <div className="max-w-5xl mx-auto">
+      <section className="bg-white py-20 md:py-28 px-6 md:px-20 text-center">
+        <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <h2 className="text-4xl md:text-20xl font-light font-dm-sans text-black leading-snug">
-            Creating groundbreaking legal solutions starts with you. We need your insight and expertise to help shape the future of the legal industry and beyond.
+            Creating groundbreaking legal solutions starts with you. We need your insight and expertise
+            to help shape the future of the legal industry and beyond.
           </h2>
-
-          {/* Paragraph */}
-          <p className="mt-8 text-lg text-black font-dm-sans leading-relaxed">
-            We aim to achieve excellence—not just for our firm, but for our clients and the communities we serve, near and far. We do this by honoring diverse perspectives and reimagining what’s possible in the practice of law. We bring together experienced attorneys, legal researchers, strategists, and industry specialists to craft innovative, practical solutions for today’s—and tomorrow’s—most complex legal challenges. Ready to turn legal insight into meaningful impact?
+ 
+          <div className="max-w-4xl md:max-w-5xl mx-auto">
+          <p className="mt-8  text-xs md:text-sm text-black font-dm-sans leading-relaxed">
+            We aim to achieve excellence—not just for our firm, but for our clients and the
+            communities we serve, near and far. We do this by honoring diverse perspectives
+            and reimagining what’s possible in the practice of law. We bring together 
+            experienced attorneys, legal researchers, strategists, and industry specialists
+            to craft innovative, practical solutions for today’s—and tomorrow’s—most complex
+            legal challenges. Ready to turn legal insight into meaningful impact?
           </p>
-
+           </div>
           {/* Button */}
           <div className="mt-10">
             <a
               href="#"
-              className="inline-flex items-center justify-center px-8 py-4 border border-[#a2c60f] bg-black uppercase no-underline text-white text-sm font-medium font-dm-sans tracking-widest rounded-full hover:bg-[#a2c60f] transition"
+              className="inline-flex items-center justify-center px-10 md:px-8 py-2 md:py-4 border bg-black uppercase no-underline text-white text-['10px'] md:text-sm font-medium font-dm-sans tracking-widest rounded-full hover:bg-[#a2c60f] hover:text-white transition"
             >
               Browse our latest vacancies
             </a>
@@ -149,11 +193,11 @@ export default function CareersHero() {
       </section>
 
  
-          <section id="careers" className="relative w-[95%] md:w-[80%] bg-gray-50 py-6 md:py-14 px-2 md:px-36 text-center">
+          <section id="careers" className="relative w-[95%]  md:w-[65%] lg:w-[70%] xl:w-[81%] bg-gray-50 py-6 md:py-14 px-2 md:px-28 lg:px-36 text-center">
           <div>
             {/* Heading & description */}
             <div className="flex flex-col justify-start items-center">
-              <h3 className="text-20xl font-bold font-dm-sans text-gray-900 mb-0 md:mb-10 underline decoration-yellow-300 decoration-4">
+              <h3 className="text-20xl font-bold font-dm-sans text-gray-900 mb-24 md:mb-10 underline decoration-yellow-300 decoration-4">
                 Career path with Us
               </h3>
 
@@ -161,11 +205,11 @@ export default function CareersHero() {
               <img
                 src="/images/lady-pose.jpg" // Replace with your actual image path
                 alt="Career Icon"
-                className="w-[80%]  h-[400px] md:h-[460px] object-cover mb-0 md:mb-4 -mt-14 md:mt-0"
+                className="w-[80%]  h-[300px] md:h-[460px] object-cover mb-14 md:mb-4 -mt-14 md:mt-0"
                
               />
 
-              <p className="text-gray-600  md:max-w-4xl text-base md:text-19xl font-snormal font-dm-sans -mt-10 md:mt-0">
+              <p className="text-gray-600  md:max-w-4xl text-base md:text-19xl font-snormal font-dm-sans -mt-6 md:mt-0">
                 Discover roles that challenge and inspire. Whether you're starting your journey or 
                 taking the next big step, grow with a team that values innovation and impact.
               </p>
@@ -204,11 +248,11 @@ export default function CareersHero() {
 
         {/* Text Content */}
         <div className="absolute z-10 flex flex-col items-start justify-center top-0 md:top-0 left-5 md:left-10 h-full">
-          <h2 className="text-7xl md:text-20xl font-semibold font-inter text-gray-100 mb-1">
+          <h2 className="text-4xl md:text-20xl font-semibold font-inter text-gray-100 mb-1">
             Have Questions?
           </h2>
 
-          <p className="text-gray-100 text-xl md:text-17xl font-dm-sans font-normal mb-6">
+          <p className="text-gray-100 text-sm md:text-17xl font-dm-sans font-normal mb-6">
             Discover what it’s like to work here.
           </p>
 
@@ -219,7 +263,7 @@ export default function CareersHero() {
                 "_blank"
               )
             }
-            className="px-12 py-4 md:py-5 -ml-2 mt-2 bg-black text-gray-100 text-sm md:text-lg cursor-pointer uppercase font-normal font-inter rounded-full hover:bg-[#a2c60f] transition"
+            className="px-6 md:px-12 py-3 md:py-4 -ml-2 mt-0 md:mt-2 bg-black text-gray-100 text-sm md:text-lg cursor-pointer uppercase font-normal font-inter rounded-full hover:bg-[#a2c60f] transition"
           >
             Connect with our Talent team
           </button>
@@ -231,5 +275,6 @@ export default function CareersHero() {
         <Footer />
       </footer>
     </div>
+    </>
   );
 }

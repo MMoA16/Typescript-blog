@@ -31,6 +31,7 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  
 
   const pathname = usePathname();
   if (pathname !== "/ContactUs/Careers") return null;
@@ -154,14 +155,42 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
   };
 
 
-async function uploadFile(file: File): Promise<number> {
-  const formData = new FormData();
-  formData.append('files', file);
+// async function uploadFile(file: File): Promise<number> {
+//   const formData = new FormData();
+//   formData.append('files', file);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`, {
-    method: 'POST',
-    body: formData,
-  });
+//   const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`, {
+//     method: 'POST',
+//     body: formData,
+//   });
+
+//   if (!response.ok) {
+//     const errorText = await response.text();
+//     throw new Error(`File upload failed: ${errorText}`);
+//   }
+
+//   const data = await response.json();
+
+//   if (!data || !Array.isArray(data) || data.length === 0) {
+//     throw new Error('Unexpected response from upload API');
+//   }
+
+//   console.log('Uploaded file response:', data[0]); // For debugging
+
+//   return data[0].id;
+// }
+
+async function uploadFile(file: File): Promise<{ id: number; url: string }> {
+  const formData = new FormData();
+  formData.append("files", file);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -171,13 +200,19 @@ async function uploadFile(file: File): Promise<number> {
   const data = await response.json();
 
   if (!data || !Array.isArray(data) || data.length === 0) {
-    throw new Error('Unexpected response from upload API');
+    throw new Error("Unexpected response from upload API");
   }
 
-  console.log('Uploaded file response:', data[0]); // For debugging
+  const uploaded = data[0];
 
-  return data[0].id;
+  // ✅ Return both ID and full URL
+  return {
+    id: uploaded.id,
+    url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${uploaded.url}`,
+  };
 }
+
+
 
 
 const handleSubmit = async () => {
@@ -214,13 +249,15 @@ const handleSubmit = async () => {
   }
 
   try {
-    let fileId = null;
+    // let uploadedFile = null;
+    // if (selectedFile) {
+    //   uploadedFile = await uploadFile(selectedFile);
+    // }
 
-    // Upload file first if selected
-    if (selectedFile) {
-      fileId = await uploadFile(selectedFile); // this returns file ID from Strapi
-    }
-
+    let uploadedFile = null;
+      if (selectedFile) {
+        uploadedFile = await uploadFile(selectedFile);
+      }
     // Prepare payload matching your backend controller field names
     const formData = {
       firstName,
@@ -234,7 +271,8 @@ const handleSubmit = async () => {
       batch,
       practise,
       description,
-      fileName: fileId,
+      // fileName: fileId,
+      fileUrl: uploadedFile?.url || null, 
     };
 
     // Send form data to Strapi API endpoint

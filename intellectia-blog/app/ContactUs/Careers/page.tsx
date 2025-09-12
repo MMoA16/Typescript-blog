@@ -209,7 +209,7 @@ export default function CareersHero() {
                
               />
 
-              <p className="text-gray-600  md:max-w-4xl text-base md:text-19xl font-snormal font-dm-sans -mt-6 md:mt-0">
+              <p className="text-gray-600  md:max-w-5xl text-base md:text-17xl font-snormal font-dm-sans -mt-6 md:mt-4">
                 Discover roles that challenge and inspire. Whether you're starting your journey or 
                 taking the next big step, grow with a team that values innovation and impact.
               </p>

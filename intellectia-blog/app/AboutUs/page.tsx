@@ -90,9 +90,9 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
 
           <div className="mt-6 text-center lg:text-left">
           
-            <Link href="/contact" className="li-a" legacyBehavior passHref>
+            <Link href="/ContactUs" className="li-a" legacyBehavior passHref>
             
-              <button className="font-semibold text-gray-300 transition-colors duration-200 transform GetInTouch rounded-md hover:bg-gray-700 bg-gray-800 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
+              <button className="font-semibold text-gray-300 transition-colors duration-200 transform GetInTouch cursor-pointer rounded-md hover:bg-gray-700 bg-gray-800 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
                 Get In Touch
               </button>
             </Link>

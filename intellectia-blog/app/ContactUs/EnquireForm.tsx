@@ -205,6 +205,7 @@
 
 import { useState, useEffect } from "react";
 import { X, CheckCircle,XCircle } from "lucide-react";
+import { Oval } from "react-loader-spinner"; 
 
 type Props = {
   onClose: () => void;
@@ -220,6 +221,7 @@ export default function EnquireForm({ onClose }: Props) {
   const [modalMessage, setModalMessage] = useState("");
   const [modalType, setModalType] = useState<"success" | "error">("success");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -235,6 +237,16 @@ export default function EnquireForm({ onClose }: Props) {
         document.body.style.overflow = "";
       }
     }, [isModalOpen]);
+
+
+    useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [loading]);
+
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -265,6 +277,8 @@ export default function EnquireForm({ onClose }: Props) {
       setErrors(formErrors);
       return;
     }
+
+    setLoading(true); 
 
     try {
       const res = await fetch(
@@ -298,11 +312,30 @@ export default function EnquireForm({ onClose }: Props) {
       setIsError(true); // Error
       setModalMessage("Something went wrong. Please try again later.");
     }
+    finally {
+    setLoading(false);
     setIsModalOpen(true);
+    }
   };
 
   return (
     <div className="bg-white p-8 rounded-lg max-w-lg shadow-lg relative font-dm-sans overflow-hidden">
+
+      {loading && (
+              <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm overflow-hidden">
+                <Oval
+                  height={60}
+                  width={60}
+                  color="#ffffff"
+                  secondaryColor="#e0e0e0"
+                  strokeWidth={4}
+                  strokeWidthSecondary={4}
+                  ariaLabel="loading"
+                />
+                
+              </div>
+            )} 
+
        {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm overflow-hidden">
             <div className="relative w-11/12 max-w-lg bg-white rounded-sm shadow-lg font-dm-sans  animate-modalFadeIn">

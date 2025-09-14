@@ -3,14 +3,14 @@ import { useState,useEffect } from 'react';
 // import emailjs from '@emailjs/browser';
 import { usePathname } from "next/navigation";
 import * as React from "react";
+import { Oval } from "react-loader-spinner"; 
+import { motion, AnimatePresence } from "framer-motion"; 
+
 
 interface InternshipFormProps {
   onClose: () => void;
 }
 
-// const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-// const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-// const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [firstName, setFirstName] = useState('');
@@ -31,10 +31,19 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+   const [loading, setLoading] = useState(false); 
   
 
   const pathname = usePathname();
   if (pathname !== "/ContactUs/Careers") return null;
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [loading]);
 
 //     useEffect(() => {
 //   // Disable scroll on open
@@ -248,6 +257,9 @@ const handleSubmit = async () => {
     return;
   }
 
+    setLoading(true); 
+    
+
   try {
     // let uploadedFile = null;
     // if (selectedFile) {
@@ -301,13 +313,48 @@ const handleSubmit = async () => {
     );
     setShowErrorPopup(true);
   }
+  finally {
+    setLoading(false);
+    }
 };
+
+  const dropIn = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.55 } },
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.55 } },
+  };
 
 
 
   return (
+
+    <AnimatePresence mode="wait">
+          <motion.div
+            key="application-form"
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="inset-0 flex items-start justify-center font-dm-sans"
+          >
+
     <div className="inset-0 flex items-start justify-center font-dm-sans">
       <div className="bg-white w-full max-w-3xl rounded-md shadow-lg relative flex flex-col h-[80vh] overflow-y-auto">
+
+        {loading && (
+              <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm overflow-hidden">
+                <Oval
+                  height={60}
+                  width={60}
+                  color="#ffffff"
+                  secondaryColor="#e0e0e0"
+                  strokeWidth={4}
+                  strokeWidthSecondary={4}
+                  ariaLabel="loading"
+                />
+                
+              </div>
+            )} 
         
         {showSuccessPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -316,7 +363,7 @@ const handleSubmit = async () => {
                 <p>Your internship application was sent successfully.</p>
                 <button
                   onClick={() => setShowSuccessPopup(false)}
-                  className=" bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90"
+                  className=" bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90 cursor-pointer"
                 >
                   Close
                 </button>
@@ -332,7 +379,7 @@ const handleSubmit = async () => {
                 <p>{errorMessage}</p>
                 <button
                   onClick={() => setShowErrorPopup(false)}
-                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90"
+                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90 cursor-pointer"
                 >
                   Close
                 </button>
@@ -607,7 +654,7 @@ const handleSubmit = async () => {
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-sm px-4 py-2 rounded-md border border-black hover:bg-gray-100 font-dm-sans font-medium"
+                className="text-sm px-4 py-2 rounded-md cursor-pointer border border-black hover:bg-gray-100 font-dm-sans font-medium"
               >
                 Reset
               </button>
@@ -625,5 +672,7 @@ const handleSubmit = async () => {
 
       </div>
     </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }

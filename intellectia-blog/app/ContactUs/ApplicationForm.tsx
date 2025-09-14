@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 // import emailjs from '@emailjs/browser';
 import { usePathname } from "next/navigation";
 import * as React from "react";
+import { Oval } from "react-loader-spinner"; 
+import { motion, AnimatePresence } from "framer-motion"; 
+
 interface ApplicationFormProps {
   onClose: () => void;
 }
@@ -31,6 +34,15 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [loading, setLoading] = useState(false); 
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [loading]);
 
   const pathname = usePathname();
   if (pathname !== "/ContactUs/Careers") return null;
@@ -158,6 +170,8 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
         fileId = await uploadFile(selectedFile);
       }
 
+      setLoading(true); 
+
       const formData = {
         jobTitle,
         expertise,
@@ -196,6 +210,9 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
         error.message || "Failed to send application. Please try again."
       );
       setShowErrorPopup(true);
+    }
+    finally {
+    setLoading(false);
     }
   };
 
@@ -254,12 +271,41 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
     }));
   };
 
+   const dropIn = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.45 } },
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.45 } },
+  };
 
 
 
   return (
+     <AnimatePresence mode="wait">
+      <motion.div
+        key="application-form"
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="inset-0 flex items-start justify-center font-dm-sans"
+      >
     <div className="inset-0 flex  items-start justify-center  font-dm-sans">
       <div className="bg-white w-full max-w-3xl rounded-md shadow-lg relative flex flex-col h-[80vh] overflow-y-auto">
+
+        {loading && (
+              <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm overflow-hidden">
+                <Oval
+                  height={60}
+                  width={60}
+                  color="#ffffff"
+                  secondaryColor="#e0e0e0"
+                  strokeWidth={4}
+                  strokeWidthSecondary={4}
+                  ariaLabel="loading"
+                />
+                
+              </div>
+            )} 
        
         {showSuccessPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -268,7 +314,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
                 <p>Your application was sent successfully.</p>
                 <button
                   onClick={() => setShowSuccessPopup(false)}
-                  className=" bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90"
+                  className=" bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90 cursor-pointer"
                 >
                   Close
                 </button>
@@ -284,7 +330,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
                 <p>{errorMessage}</p>
                 <button
                   onClick={() => setShowErrorPopup(false)}
-                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90"
+                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90 cursor-pointer"
                 >
                   Close
                 </button>
@@ -418,6 +464,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
               <label className="block text-sm font-medium text-black mb-1 text-left ml-1">Years of Experience</label>
               <input
                 type="number"
+                min="1"
                 placeholder="3"
                 value={experience}
                 onChange={(e) => handleChange('experience', e.target.value)}
@@ -576,7 +623,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
             <button
               type="button"
               onClick={onClose}
-              className="text-sm px-4 py-2 rounded-md border-none bg-red-500 text-white hover:bg-opacity-90 font-dm-sans font-medium"
+              className="text-sm px-4 py-2 rounded-md border-none bg-red-500 cursor-pointer text-white hover:bg-opacity-90 font-dm-sans font-medium"
             >
               Close
             </button>
@@ -586,14 +633,14 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-sm px-4 py-2 rounded-md border border-black hover:bg-gray-100 font-dm-sans font-medium"
+                className="text-sm px-4 py-2 rounded-md border border-black cursor-pointer hover:bg-gray-100 font-dm-sans font-medium"
               >
                 Reset
               </button>
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-black text-white text-sm px-4 py-2 rounded-md hover:bg-opacity-85 font-dm-sans font-medium"
+                className="bg-black text-white text-sm px-4 py-2 rounded-md cursor-pointer hover:bg-opacity-85 font-dm-sans font-medium"
               >
                 Submit
               </button>
@@ -602,13 +649,9 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
 
 
        
-        {/* <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-black text-2xl"
-        >
-          &times;
-        </button> */}
       </div>
     </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }

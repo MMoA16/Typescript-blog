@@ -34,7 +34,7 @@ const BlogCard = ({ BlogData }: any) => {
 
                     <div className="p-4 sm:p-5 lg:p-6 space-y-2 sm:space-y-3 flex-grow flex flex-col">
                         <h3 className="text-lg sm:text-xl font-semibold text-gray-800 line-clamp-2 flex-shrink-0">{title}</h3>
-                        <p className="text-sm sm:text-base text-gray-600 line-clamp-3 flex-grow">{ShortDesc}</p>
+                        <p className="text-sm sm:text-base text-gray-600 line-clamp-3 flex-grow font-dm-sans">{ShortDesc}</p>
                         <div className="pt-2 flex-shrink-0">
                             <span className="text-blue-600 text-sm font-medium hover:text-blue-800 transition-colors">
                                 Read More →

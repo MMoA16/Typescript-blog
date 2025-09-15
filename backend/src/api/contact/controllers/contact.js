@@ -4,7 +4,8 @@
 const nodemailer = require("nodemailer");
 const strapi = global.strapi;
 
-
+console.log('User:', process.env.SMTP_USER);
+console.log('Pass:', process.env.SMTP_PASS);
 
 const teamTemplate = (name, email, message) => `
   <!DOCTYPE html>

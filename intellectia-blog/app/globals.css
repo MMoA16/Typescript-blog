@@ -69,7 +69,7 @@ body {
 /* Old ShowInMaps styles removed - now using Tailwind classes */
 
 .GetInTouch:hover {
-  color: #001F3F;
+  color: #e5ecf3;
   background-color: #fff;
 }
 .li-bulletremove{

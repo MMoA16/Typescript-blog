@@ -19,7 +19,7 @@ const desc = BlogPosts.attributes.Description;
         />
         <div className="card-content">
           <h2 className="card-title">{title}</h2>
-          <p className="card-description">
+          <p className="card-description font-dm-sans">
             {desc}
           </p>
           <Link href={`/Practices/${BlogPosts.id}`}>

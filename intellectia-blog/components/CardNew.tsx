@@ -1,8 +1,11 @@
 'use client'
 import { motion } from 'framer-motion';
 import React from 'react';
+import { useRouter } from 'next/navigation';
+
 
 const CardNew = ({ BlogPosts }: any ) => {
+  const router = useRouter();
 const imageUrl = "http://localhost:1337" + BlogPosts.attributes.cover.data.attributes.url;
 const title = BlogPosts.attributes.title;
 const desc = BlogPosts.attributes.ShortDesc;
@@ -23,7 +26,7 @@ const desc = BlogPosts.attributes.ShortDesc;
             {desc}
           </p>
           </div>
-          <button className="card-buttonLandingPage">Read More</button>
+          <button className="card-buttonLandingPage" onClick={() => router.push(`/Blogs/${BlogPosts.id}`)}>Read More</button>
         </div>
       </div>
 

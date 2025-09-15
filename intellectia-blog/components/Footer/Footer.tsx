@@ -28,26 +28,20 @@ const Footer = (): JSX.Element => {
                 
 
 					<div className="mt-6 px-30 lg:mt-0 lg:flex-1">
-						<div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+						<div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
 							<div>
 								<h3 className="text-gray-700 uppercase dark:text-white">About</h3>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+									href="/AboutUs"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
 									Company
 								</a>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									community
+									href="/AboutUs"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									Community
 								</a>
-								{/* <a
-									href="#Careers"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Careers
-								</a> */}
-
-								<Link href="/ContactUs/Careers" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+								<Link href="/ContactUs/Careers" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
 								Careers
 								</Link>
 							</div>
@@ -55,52 +49,52 @@ const Footer = (): JSX.Element => {
 							<div>
 								<h3 className="text-gray-700 uppercase dark:text-white">Blog</h3>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Tec
+									href="http://localhost:3000/Blogs/1"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									Blogging journey
 								</a>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Music
+									href="http://localhost:3000/Blogs/2"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									Value of Place
 								</a>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Videos
+									href="http://localhost:3000/Blogs/3"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									FDI Rules in India
 								</a>
 							</div>
 
 							<div>
 								<h3 className="text-gray-700 uppercase dark:text-white">
-									Products
+									Practices
 								</h3>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Mega cloud
+									href="http://localhost:3000/Practices/1"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									Intellectual Property Protection
 								</a>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Aperion UI
+									href="http://localhost:3000/Practices/2"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									Registration of Agreements
 								</a>
 								<a
-									href="#"
-									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									Meraki UI
+									href="http://localhost:3000/Practices/3"
+									className="block mt-2 text-sm text-gray-600 dark:text-gray-400 no-underline hover:no-underline">
+									Contracts
 								</a>
 							</div>
 
 							<div>
-								<a href='tel:+919849792800'>
-									<h3 className="text-gray-700 uppercase dark:text-white">Contact</h3>
-									<span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-										+91 9849792800
+								<a href='tel:+919845097323' className="no-underline hover:no-underline">
+								<h3 className="text-gray-700 uppercase dark:text-white">Contact</h3>
+								<span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+									+91 9845097323
 								</span>
 								</a>
-								<span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-									example@email.com
+								<span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+									info@intellectia.net
 								</span>
 							</div>
 						</div>

@@ -45,7 +45,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
 
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
   //console.log("hujioj",strapiAboutUs.data.attributes);
-  const { Title, MissionLine, desc, Logo} = strapiHomeData.data.attributes;
+  const { Title, MissionLine, desc, Logo, Values} = strapiHomeData.data.attributes;
   const logoURL="http://localhost:1337"+Logo.data.attributes.url
   /*const teamMember = {
     name: 'John Doe',
@@ -90,9 +90,9 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
 
           <div className="mt-6 text-center lg:text-left">
           
-            <Link href="/contact" className="li-a" legacyBehavior passHref>
+            <Link href="/ContactUs" className="li-a" legacyBehavior passHref>
             
-              <button className="font-semibold text-gray-300 transition-colors duration-200 transform GetInTouch rounded-md hover:bg-gray-700 bg-gray-800 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
+              <button className="font-semibold text-gray-300 transition-colors duration-200 transform GetInTouch rounded-md hover:bg-gray-700 bg-gray-800 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base cursor-pointer">
                 Get In Touch
               </button>
             </Link>
@@ -114,23 +114,12 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
    
   
   <div className='bg-white text-center'>
-  <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-3xl">
+  <h2 className="text-3xl text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-21xl">
             Our Values   
       </h2>
     <div className='max-w-4xl mx-auto text-center  px-6 md:px-6 mdN'>
-      <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify leading-relaxed">
-        Driven by hunger for intellectual stimulation, we are constantly involved in researching ideas, conducting qualitative and quantitative analysis and applying complex frameworks to solve knotty problems. Our primary goal is to help people and their businesses. We built trust because of our will to help our clients accomplish their goals. Our role is to assist organization in critical areas of their inclusiveness work. We act as an educator, a catalyst for deeper change, a resource or a facilitator, the leadership of the process remains within your organization. We act as an extension of in-house legal cell or as independent legal consultants. Our efforts are towards being strategic partners for our clients growth and not just be a consulting firm.
-          </p>
-
-      <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify leading-relaxed">
-        Our Associates have a successful track record of representing companies and individuals before domestic courts and arbitration tribunals. Although, our Associates have been collaborating on various matters since a fairly long time, the firm was formed recently in order to serve a larger platform for new clients and associates.
-
-          </p>
-      <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify leading-relaxed">
-        We focus on addressing industry wise Management & Legal Consultancy services. Our priority is to safeguard our client's interests and ensure that personal or professional association of any Associate does not involve a conflict of interest.
-          </p>
-      <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify leading-relaxed">
-        We are a socially responsible firm and undertake pro-bono work to support several philanthropic organizations, NGOs and government initiatives related to social justice, child-care and education.
+      <p className="mt-4 text-sm sm:text-base text-justify leading-relaxed font-dm-sans whitespace-pre-wrap">
+        {Values}
           </p>
     </div>
   </div>

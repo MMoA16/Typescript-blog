@@ -1025,6 +1025,7 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       true
     >;
     Logo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Values: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -130,7 +130,7 @@ const Page = async ({ strapiData, blog }: any) => {
         )}
  </div>
  </div>
-        <div className="prose prose-lg text-gray-800 max-w-3xl mx-auto px-6 text-left">
+        <div className="prose prose-lg text-gray-800 max-w-3xl mx-auto px-6 font-dm-sans text-left">
           {RenderContent(content)}
         </div>
 

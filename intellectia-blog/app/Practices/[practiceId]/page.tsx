@@ -260,15 +260,15 @@ export default function PracticeAreaDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">Overview</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">Overview</h2>
               <div className="prose prose-base sm:prose-lg max-w-none">
-                <p className="text-gray-600 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base">
+                <p className="text-gray-600 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base font-dm-sans">
                   {description}
                 </p>
                 
                 <div className="bg-blue-50 p-4 sm:p-6 rounded-lg mb-6 sm:mb-8">
                   <h3 className="text-lg sm:text-xl font-semibold text-blue-800 mb-3 sm:mb-4">Our Approach</h3>
-                  <p className="text-gray-700 text-sm sm:text-base">
+                  <p className="text-gray-700 text-sm sm:text-base font-dm-sans">
                     At Intellectia Legal Firm, we understand that every case is unique. Our experienced team 
                     provides personalized legal solutions that are tailored to meet your specific needs and 
                     objectives. We combine deep legal expertise with innovative strategies to achieve the best 

@@ -3,14 +3,14 @@ import { useState,useEffect } from 'react';
 // import emailjs from '@emailjs/browser';
 import { usePathname } from "next/navigation";
 import * as React from "react";
+import { Oval } from "react-loader-spinner"; 
+import { motion, AnimatePresence } from "framer-motion"; 
+
 
 interface InternshipFormProps {
   onClose: () => void;
 }
 
-// const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-// const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-// const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [firstName, setFirstName] = useState('');
@@ -31,9 +31,19 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+   const [loading, setLoading] = useState(false); 
+  
 
   const pathname = usePathname();
   if (pathname !== "/ContactUs/Careers") return null;
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [loading]);
 
 //     useEffect(() => {
 //   // Disable scroll on open
@@ -154,14 +164,42 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
   };
 
 
-async function uploadFile(file: File): Promise<number> {
-  const formData = new FormData();
-  formData.append('files', file);
+// async function uploadFile(file: File): Promise<number> {
+//   const formData = new FormData();
+//   formData.append('files', file);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`, {
-    method: 'POST',
-    body: formData,
-  });
+//   const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`, {
+//     method: 'POST',
+//     body: formData,
+//   });
+
+//   if (!response.ok) {
+//     const errorText = await response.text();
+//     throw new Error(`File upload failed: ${errorText}`);
+//   }
+
+//   const data = await response.json();
+
+//   if (!data || !Array.isArray(data) || data.length === 0) {
+//     throw new Error('Unexpected response from upload API');
+//   }
+
+//   console.log('Uploaded file response:', data[0]); // For debugging
+
+//   return data[0].id;
+// }
+
+async function uploadFile(file: File): Promise<{ id: number; url: string }> {
+  const formData = new FormData();
+  formData.append("files", file);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/upload`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -171,13 +209,19 @@ async function uploadFile(file: File): Promise<number> {
   const data = await response.json();
 
   if (!data || !Array.isArray(data) || data.length === 0) {
-    throw new Error('Unexpected response from upload API');
+    throw new Error("Unexpected response from upload API");
   }
 
-  console.log('Uploaded file response:', data[0]); // For debugging
+  const uploaded = data[0];
 
-  return data[0].id;
+  // ✅ Return both ID and full URL
+  return {
+    id: uploaded.id,
+    url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${uploaded.url}`,
+  };
 }
+
+
 
 
 const handleSubmit = async () => {
@@ -213,13 +257,30 @@ const handleSubmit = async () => {
     return;
   }
 
-  try {
-    let fileId = null;
+    setLoading(true); 
+    
 
-    // Upload file first if selected
+  // try {
+  //   // let uploadedFile = null;
+  //   // if (selectedFile) {
+  //   //   uploadedFile = await uploadFile(selectedFile);
+  //   // }
+
+  //   let uploadedFile = null;
+  //     if (selectedFile) {
+  //       uploadedFile = await uploadFile(selectedFile);
+  //     }
+
+    try {
+    let uploadedFileData = null;
+
     if (selectedFile) {
-      fileId = await uploadFile(selectedFile); // this returns file ID from Strapi
+      // 1️⃣ Upload resume to Strapi
+      uploadedFileData = await uploadFile(selectedFile);
     }
+
+
+
 
     // Prepare payload matching your backend controller field names
     const formData = {
@@ -234,7 +295,11 @@ const handleSubmit = async () => {
       batch,
       practise,
       description,
-      fileName: fileId,
+      // fileName: fileId,
+      // fileUrl: uploadedFile?.url || null, 
+      uploadedFile: uploadedFileData
+        ? { id: uploadedFileData.id, url: uploadedFileData.url }
+        : null,
     };
 
     // Send form data to Strapi API endpoint
@@ -263,13 +328,48 @@ const handleSubmit = async () => {
     );
     setShowErrorPopup(true);
   }
+  finally {
+    setLoading(false);
+    }
 };
+
+  const dropIn = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.55 } },
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.55 } },
+  };
 
 
 
   return (
+
+    <AnimatePresence mode="wait">
+          <motion.div
+            key="application-form"
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="inset-0 flex items-start justify-center font-dm-sans"
+          >
+
     <div className="inset-0 flex items-start justify-center font-dm-sans">
       <div className="bg-white w-full max-w-3xl rounded-md shadow-lg relative flex flex-col h-[80vh] overflow-y-auto">
+
+        {loading && (
+              <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm overflow-hidden">
+                <Oval
+                  height={60}
+                  width={60}
+                  color="#ffffff"
+                  secondaryColor="#e0e0e0"
+                  strokeWidth={4}
+                  strokeWidthSecondary={4}
+                  ariaLabel="loading"
+                />
+                
+              </div>
+            )} 
         
         {showSuccessPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -278,7 +378,7 @@ const handleSubmit = async () => {
                 <p>Your internship application was sent successfully.</p>
                 <button
                   onClick={() => setShowSuccessPopup(false)}
-                  className=" bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90"
+                  className=" bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90 cursor-pointer"
                 >
                   Close
                 </button>
@@ -294,7 +394,7 @@ const handleSubmit = async () => {
                 <p>{errorMessage}</p>
                 <button
                   onClick={() => setShowErrorPopup(false)}
-                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90"
+                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-90 cursor-pointer"
                 >
                   Close
                 </button>
@@ -569,7 +669,7 @@ const handleSubmit = async () => {
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-sm px-4 py-2 rounded-md border border-black hover:bg-gray-100 font-dm-sans font-medium"
+                className="text-sm px-4 py-2 rounded-md cursor-pointer border border-black hover:bg-gray-100 font-dm-sans font-medium"
               >
                 Reset
               </button>
@@ -587,5 +687,7 @@ const handleSubmit = async () => {
 
       </div>
     </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }

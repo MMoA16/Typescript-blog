@@ -133,7 +133,7 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
   };
 
   // Upload resume to Strapi
-  async function uploadFile(file: File): Promise<number> {
+  async function uploadFile(file: File): Promise<{ id: number; url: string }> {
     const formData = new FormData();
     formData.append("files", file);
 
@@ -156,19 +156,33 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
       throw new Error("Unexpected response from upload API");
     }
 
-    return data[0].id;
+    // return data[0].id;
+    const uploaded = data[0];
+
+  // ✅ Return both ID and full URL
+  return {
+    id: uploaded.id,
+    url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${uploaded.url}`,
+  };
   }
 
   // Submit form
   const handleSubmit = async () => {
     if (!validate()) return;
 
-    try {
-      let fileId = null;
+    // try {
+    //   let fileId = null;
 
-      if (selectedFile) {
-        fileId = await uploadFile(selectedFile);
-      }
+    //   if (selectedFile) {
+    //     fileId = await uploadFile(selectedFile);
+    //   }
+    try {
+    let uploadedFileData = null;
+
+    if (selectedFile) {
+      // 1️⃣ Upload resume to Strapi
+      uploadedFileData = await uploadFile(selectedFile);
+    }
 
       setLoading(true); 
 
@@ -180,13 +194,17 @@ export default function ApplicationForm({ onClose }: ApplicationFormProps) {
         email,
         phone: `${phone}`,
         experience,
+        // yearsOfExperience: experience, 
         location,
         university,
         batch,
         organization,
         noticePeriod,
         description,
-        UploadResume: fileId,
+        // UploadResume: fileId,
+        uploadedFile: uploadedFileData
+        ? { id: uploadedFileData.id, url: uploadedFileData.url }
+        : null,
       };
 
       const response = await fetch(

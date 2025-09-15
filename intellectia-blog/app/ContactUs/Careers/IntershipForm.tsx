@@ -260,16 +260,28 @@ const handleSubmit = async () => {
     setLoading(true); 
     
 
-  try {
-    // let uploadedFile = null;
-    // if (selectedFile) {
-    //   uploadedFile = await uploadFile(selectedFile);
-    // }
+  // try {
+  //   // let uploadedFile = null;
+  //   // if (selectedFile) {
+  //   //   uploadedFile = await uploadFile(selectedFile);
+  //   // }
 
-    let uploadedFile = null;
-      if (selectedFile) {
-        uploadedFile = await uploadFile(selectedFile);
-      }
+  //   let uploadedFile = null;
+  //     if (selectedFile) {
+  //       uploadedFile = await uploadFile(selectedFile);
+  //     }
+
+    try {
+    let uploadedFileData = null;
+
+    if (selectedFile) {
+      // 1️⃣ Upload resume to Strapi
+      uploadedFileData = await uploadFile(selectedFile);
+    }
+
+
+
+
     // Prepare payload matching your backend controller field names
     const formData = {
       firstName,
@@ -284,7 +296,10 @@ const handleSubmit = async () => {
       practise,
       description,
       // fileName: fileId,
-      fileUrl: uploadedFile?.url || null, 
+      // fileUrl: uploadedFile?.url || null, 
+      uploadedFile: uploadedFileData
+        ? { id: uploadedFileData.id, url: uploadedFileData.url }
+        : null,
     };
 
     // Send form data to Strapi API endpoint

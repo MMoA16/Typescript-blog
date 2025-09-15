@@ -497,7 +497,7 @@ const ContactUs: NextPage<ContactContainerType> = () => {
       <div className="relative mb-108">
         <div className="bg-gray-800 text-black py-28 px-7 md:px-5">
           <div className="md:px-20 font-dm-sans">
-            <p className="text-3xl md:text-19xl font-semibold text-white pt-10 mb-3">
+            <p className="text-3xl md:text-17xl font-semibold text-white pt-10 mb-3">
               We're Here to Help
             </p>
             <p className="text-base md:text-xl font-normal text-white">
@@ -627,9 +627,12 @@ const ContactUs: NextPage<ContactContainerType> = () => {
         </div>
       </div>
 
-      <div className="relative mt-16 mb-16 flex justify-center">
+  b    <div className="relative mt-16 mb-16 flex justify-center z-0">
         <ContactMap />
       </div>
+
+        
+
 
       <div className="bg-gray-100 py-6">
         <div className="max-w-6xl mx-auto">

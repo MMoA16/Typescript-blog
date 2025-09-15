@@ -42,38 +42,39 @@ module.exports = {
       });
 
       // 4️⃣ Send acknowledgement email to User
-      // await transporter.sendMail({
-      //   from: `"Enquiry Team" <${process.env.SMTP_USER}>`,
-      //   to: email,
-      //   subject: "We have received your enquiry",
-      //   html: `
-      //     <p>Hi ${name},</p>
-      //     <p>Thank you for contacting us regarding <b>${enquiryType}</b>. 
-      //     We have received your enquiry and our team will get back to you soon.</p>
-      //     <p>Best Regards,<br/>The Team</p>
-      //   `,
-      // });
+      await transporter.sendMail({
+        from: `"Enquiry Team" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: "We have received your enquiry",
+        html: `
+          <p>Hi ${name},</p>
+          <p>Thank you for contacting us regarding <b>${enquiryType}</b>. 
+          We have received your enquiry and our team will get back to you soon.</p>
+          <p>Best Regards,<br/>The Team</p>
+          <p>Intellectia</p>
+        `,
+      });
 
-      await strapi
-        .plugin("email-designer")
-        .service("email")
-        .sendTemplatedEmail(
-          {
-            to: email,
-            from: `"EnquiryTeam" <${process.env.SMTP_USER}>`,
-            replyTo: process.env.SMTP_USER,
-          },
-          {
+      // await strapi
+      //   .plugin("email-designer")
+      //   .service("email")
+      //   .sendTemplatedEmail(
+      //     {
+      //       to: email,
+      //       from: `"EnquiryTeam" <${process.env.SMTP_USER}>`,
+      //       replyTo: process.env.SMTP_USER,
+      //     },
+      //     {
             
-            templateReferenceId: 2, // still required
-            subject: "We have received your enquiry!",
-            // 👇 override template with custom HTML
+      //       templateReferenceId: 2, // still required
+      //       subject: "We have received your enquiry!",
+      //       // 👇 override template with custom HTML
         
-          },
-          // {
-          //   user: { name, email, message },
-          // }
-        );
+      //     },
+      //     // {
+      //     //   user: { name, email, message },
+      //     // }
+      //   );
 
       ctx.send({ success: true, message: "Enquiry submitted and emails sent!" });
     } catch (error) {

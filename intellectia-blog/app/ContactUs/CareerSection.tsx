@@ -28,7 +28,7 @@ export default function CareersSection() {
   return (
     <section className="py-12 px-7 font-dm-sans text-[#1a1a1a] relative">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
+        
         <div className="mb-5">
         
           <h1 className="text-21xl font-semibold">Be part of our mission</h1>

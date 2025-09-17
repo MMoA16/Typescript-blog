@@ -45,7 +45,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
 
   //const {strapiAboutUs}= await getStrapiData("/api/about-us");
   //console.log("hujioj",strapiAboutUs.data.attributes);
-  const { Title, MissionLine, desc, Logo} = strapiHomeData.data.attributes;
+  const { Title, MissionLine, desc, Logo, Values} = strapiHomeData.data.attributes;
   const logoURL="http://localhost:1337"+Logo.data.attributes.url
   /*const teamMember = {
     name: 'John Doe',
@@ -102,11 +102,12 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
     </div>
   {/* </div> */}
   <Vision />
-  <Divider/>
+  {/* <Divider/> */}
+   
 
-            {/* <div className="mt-4 mb-4">
+            <div className="mt-4 mb-4">
                 <div className="w-full h-px sm:h-0.5 bg-black" />
-              </div> */}
+              </div>
 
   
   {/* <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20 py-8 sm:py-10 lg:py-16"> */}

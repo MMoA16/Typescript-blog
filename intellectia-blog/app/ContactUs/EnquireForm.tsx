@@ -30,6 +30,16 @@ export default function EnquireForm({ onClose }: Props) {
     };
   }, [isModalOpen, loading]);
 
+
+    useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [loading]);
+
+
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!name.trim()) newErrors.name = "Name is required";

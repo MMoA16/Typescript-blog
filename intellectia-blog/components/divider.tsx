@@ -6,10 +6,10 @@ export type DividerType = {
 
 const Divider: NextPage<DividerType> = ({ className = "" }) => {
   return (
-    <div
-      className={`container self-stretch flex flex-row items-center justify-start mdN -px-5 ${className}`}
-    >
-      <div className="flex-1  bg-black h-px" />
+    <div className={`w-screen relative left-1/2 right-1/2 -mx-[50vw] ${className}`}>
+      <div className="w-full max-w-[90%] mx-auto">
+        <div className="h-px bg-black" />
+      </div>
     </div>
   );
 };

@@ -78,7 +78,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
         />
       </div>
       <div className="w-full lg:w-1/2 lg:pl-8">
-        <div className="max-w-lg mx-auto lg:mx-0">
+        <div className="max-w-lg mx-auto lg:mx-0 mt-4">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white font-dm-sans text-center lg:text-left">
             Who We{' '}
             <span className="text-indigo-400 font-dm-sans">Are</span>
@@ -114,7 +114,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
    
   
   <div className='bg-white text-center'>
-  <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-3xl">
+  <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-20xl">
             Our Values   
       </h2>
     <div className='max-w-4xl mx-auto text-center  px-6 md:px-6 mdN'>

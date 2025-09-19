@@ -1280,7 +1280,15 @@ export interface ApiTeamMemberTeamMember extends Schema.CollectionType {
     TeamMemberName: Attribute.String;
     TeamMemberDesignation: Attribute.String;
     TeamMemberPhoto: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    TeamMemberNumber: Attribute.Integer;
+    TeamMemberPhone: Attribute.String;
+    TeamMemberEmail: Attribute.Email;
+    TeamMemberLinkedinLink: Attribute.String;
+    TeamMemberDescription: Attribute.Text;
+    TeamMemberExpertise: Attribute.String;
+    TeamMemberEducation: Attribute.String;
+    TeamMemberslug: Attribute.String;
+    TeamMemberLanguage: Attribute.String;
+    TeamMemberRelatedSectors: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

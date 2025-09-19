@@ -80,13 +80,11 @@ const PracticeCarousel: NextPage<PracticeCarouselProps> = ({ className = "", Hom
           {missionLine}
         </div>
         
-      <Link href="ContactUs" className="li-a" legacyBehavior passHref>
-            
-              <button className="font-semibold text-gray-300 transition-colors duration-200 transform GetInTouch rounded-md hover:bg-gray-800 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base cursor-pointer">
-                Get In Touch
-              </button>
-            </Link>
-            
+        <Link href="/ContactUs" className="li-a" legacyBehavior passHref>
+          <button className="font-semibold text-gray-300 transition-colors duration-200 transform GetInTouch cursor-pointer rounded-md hover:bg-white-200 bg-gray-800 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
+            Get In Touch
+          </button>
+        </Link>
       </div>
     </div>
   );

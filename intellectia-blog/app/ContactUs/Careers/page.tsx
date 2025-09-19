@@ -84,27 +84,7 @@ export default function CareersHero() {
        </section>
       
       <section ref={firstSectionRef} className="bg-gray-800 relative w-full h-[76vh] md:h-[70vh] lg:h-[75vh]">
-        {/* Background Image */}
-        {/* <img
-          src="/images/law.jpg"
-          alt="Person working"
-          className="w-full h-full object-cover"
-        /> */}
-
-        
-
-        {/* Overlay */}
-        {/* <div className="absolute inset-0 bg-black/40"></div> */}
-
-        {/* Top Left Title */}
-        {/* <div className="absolute -top-3 left-3 lg:-top-2 lg:left-8 z-10">
-          <h2 className="text-white text-xl lg:text-18xl font-bold font-inter">
-            Intellectia Firm
-            <span className="text-21xl text-[#a2c60f]">.</span>
-          </h2>
-        </div> */}
-
-        
+              
         <div className="absolute inset-0 flex flex-col items-center justify-center mt-5">
           <h1 className="text-white text-24xl md:text-90xl  font-bold font-dm-sans tracking-wide">
             Careers
@@ -206,7 +186,7 @@ export default function CareersHero() {
                 src="/images/lady-pose.jpg" // Replace with your actual image path
                 alt="Career Icon"
                 className="w-[80%]  h-[300px] md:h-[460px] object-cover mb-14 md:mb-4 -mt-14 md:mt-0"
-               
+                loading="lazy"
               />
 
               <p className="text-gray-600  md:max-w-5xl text-base md:text-17xl font-snormal font-dm-sans -mt-6 md:mt-4">
@@ -241,6 +221,7 @@ export default function CareersHero() {
           src="/images/call-girl.jpg"
           alt="Our Team"
           className="absolute inset-0 w-full h-full object-cover grayscale"
+          loading="lazy"
         />
 
         {/* Overlay */}

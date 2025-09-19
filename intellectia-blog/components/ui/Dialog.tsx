@@ -49,7 +49,7 @@ export const Dialog: React.FC<DialogProps> = ({ children, open, onOpenChange }) 
       onClick={handleClose}
     >
       <div
-        className={`bg-white w-3/4 md:w-1/2 h-full transform transition-transform duration-300 ease-in-out ${
+        className={`bg-white w-5/6 md:w-1/2 h-full transform transition-transform duration-300 ease-in-out ${
           isVisible ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}

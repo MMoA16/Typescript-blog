@@ -115,7 +115,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
    
   
   <div className='bg-white text-center'>
-  <h2 className="text-3xl px-6 dark:text-black font-dm-sans md:text-20xl">
+  <h2 className="text-5xl px-6 dark:text-black font-dm-sans md:text-20xl">
             Our Values   
       </h2>
     <div className='max-w-4xl mx-auto text-center  px-6 md:px-6 mdN'>
@@ -155,7 +155,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
   
    <div className="bg-gray-100 px-20 py-10 mx-auto space-y-6 md:h-128 md:py-16 md:flex-row md:items-center md:space-x-6">
          <div className=" text-center">
-           <h2 className="text-3xl  text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-21xl">
+           <h2 className="text-5xl  text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-21xl">
              Our Team
            </h2>
            <TeamList teamMembers={TeamData?.data || []} /> 

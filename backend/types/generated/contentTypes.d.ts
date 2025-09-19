@@ -1286,6 +1286,9 @@ export interface ApiTeamMemberTeamMember extends Schema.CollectionType {
     TeamMemberDescription: Attribute.Text;
     TeamMemberExpertise: Attribute.String;
     TeamMemberEducation: Attribute.String;
+    TeamMemberslug: Attribute.String;
+    TeamMemberLanguage: Attribute.String;
+    TeamMemberRelatedSectors: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

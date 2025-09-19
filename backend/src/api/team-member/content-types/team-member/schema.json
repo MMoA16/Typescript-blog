@@ -46,6 +46,15 @@
     },
     "TeamMemberEducation": {
       "type": "string"
+    },
+    "TeamMemberslug": {
+      "type": "string"
+    },
+    "TeamMemberLanguage": {
+      "type": "string"
+    },
+    "TeamMemberRelatedSectors": {
+      "type": "string"
     }
   }
 }

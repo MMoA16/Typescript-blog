@@ -5,7 +5,7 @@ const Vision = (): JSX.Element => {
 				<h2 className="text-4xl dark:text-black mt-8 font-dm-sans">Vision</h2>
 			</div> */}
 			<div className="p-4 mx-auto text-center">
-				<h2 className="text-3xl  text-gray-800 dark:text-text-black px-6 font-dm-sans md:text-21xl">Vision</h2>
+				<h2 className="text-5xl font-semibold md:text-20xl dark:text-black mt-8 font-dm-sans">Vision</h2>
 			</div>
 
 			<section className="text-gray-600 body-font">

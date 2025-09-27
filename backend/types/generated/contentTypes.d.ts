@@ -1170,6 +1170,47 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
   };
 }
 
+export interface ApiLifeAtIntellectiaLifeAtIntellectia
+  extends Schema.SingleType {
+  collectionName: 'life_at_intellectias';
+  info: {
+    singularName: 'life-at-intellectia';
+    pluralName: 'life-at-intellectias';
+    displayName: 'Life-at-Intellectia';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Image1: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image2: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image3: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image4: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image5: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image6: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image9: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image7: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image8: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image10: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::life-at-intellectia.life-at-intellectia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::life-at-intellectia.life-at-intellectia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Schema.CollectionType {
   collectionName: 'posts';
   info: {
@@ -1280,7 +1321,23 @@ export interface ApiTeamMemberTeamMember extends Schema.CollectionType {
     TeamMemberName: Attribute.String;
     TeamMemberDesignation: Attribute.String;
     TeamMemberPhoto: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    TeamMemberNumber: Attribute.Integer;
+    TeamMemberPhone: Attribute.String;
+    TeamMemberEmail: Attribute.Email;
+    TeamMemberLinkedinLink: Attribute.String;
+    TeamMemberDescription: Attribute.Text;
+    TeamMemberExpertise: Attribute.String;
+    TeamMemberEducation: Attribute.String;
+    TeamMemberSlug: Attribute.String;
+    TeamMemberLanguage: Attribute.String;
+    TeamMemberRelatedSectors: Attribute.String;
+    TeamMemberPdfLink: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    TeamMemberDocxLink: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1326,6 +1383,7 @@ declare module '@strapi/types' {
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::intership-application.intership-application': ApiIntershipApplicationIntershipApplication;
       'api::job-application.job-application': ApiJobApplicationJobApplication;
+      'api::life-at-intellectia.life-at-intellectia': ApiLifeAtIntellectiaLifeAtIntellectia;
       'api::post.post': ApiPostPost;
       'api::practice-area.practice-area': ApiPracticeAreaPracticeArea;
       'api::team.team': ApiTeamTeam;

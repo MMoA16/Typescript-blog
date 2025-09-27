@@ -29,8 +29,54 @@
         "audios"
       ]
     },
-    "TeamMemberNumber": {
-      "type": "integer"
+    "TeamMemberPhone": {
+      "type": "string"
+    },
+    "TeamMemberEmail": {
+      "type": "email"
+    },
+    "TeamMemberLinkedinLink": {
+      "type": "string"
+    },
+    "TeamMemberDescription": {
+      "type": "text"
+    },
+    "TeamMemberExpertise": {
+      "type": "string"
+    },
+    "TeamMemberEducation": {
+      "type": "string"
+    },
+    "TeamMemberSlug": {
+      "type": "string"
+    },
+    "TeamMemberLanguage": {
+      "type": "string"
+    },
+    "TeamMemberRelatedSectors": {
+      "type": "string"
+    },
+    "TeamMemberPdfLink": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "TeamMemberDocxLink": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

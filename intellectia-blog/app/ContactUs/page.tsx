@@ -295,14 +295,13 @@
 import Nav from "@/components/nav";
 import Footer from "@/components/Footer/Footer";
 import type { NextPage } from "next";
-import dynamic from "next/dynamic";
 import { MapPin, Phone, Mail, X, CheckCircle, XCircle } from "lucide-react";
 import CareerSection from "@/app/ContactUs/CareerSection";
 import { useState, useEffect } from "react";
 import { Oval } from "react-loader-spinner"; 
+import dynamic from "next/dynamic";
 
-
-const ContactMap = dynamic(() => import("./ContactMap"), { ssr: false });
+const Map = dynamic(() => import("./ContactMap"), { ssr: false });
 
 export type ContactContainerType = {
   className?: string;
@@ -628,7 +627,7 @@ const ContactUs: NextPage<ContactContainerType> = () => {
       </div>
 
   b    <div className="relative mt-16 mb-16 flex justify-center z-0">
-        <ContactMap />
+        <Map />
       </div>
 
         

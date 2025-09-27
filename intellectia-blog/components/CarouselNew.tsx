@@ -101,20 +101,36 @@ const CarouselNew = ({BlogPosts}:any) => {
         }
 
         .control-prev, .control-next {
+          position:relative;
+          bottom:350px;
+          width:40px;
           height: 40px;
           border: none;
           color: white;
-          padding: 5px;
+          padding: 10px;
           cursor: pointer;
           font-size: 16px;
           transition: background 0.3s;
           border-radius: 50%;
         }
+          .control-prev{
+             left:-13px;
+          }
+             .control-next{
+             right:-13px;
+             }
         
         @media (min-width: 768px) {
           .control-prev, .control-next {
+            width:50px;
+            height: 40px;
+            position:relative;
+            bottom:0px;
             height: 50px;
+            cursor: pointer;
             font-size: 18px;
+            transition: background 0.3s;
+            border-radius: 50%;
           }
         }
 

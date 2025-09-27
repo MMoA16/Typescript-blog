@@ -12,7 +12,7 @@ const SocialIcons: React.FC = () => {
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
                 <FontAwesomeIcon icon={faTwitter} className='h-5 w-5' />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900">
+            <a href="https://www.linkedin.com/company/intelectia-legal-firm---india/" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900">
                 <FontAwesomeIcon icon={faLinkedinIn} className='h-5 w-5' />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800">

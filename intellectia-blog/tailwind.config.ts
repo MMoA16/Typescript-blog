@@ -42,10 +42,12 @@ module.exports = {
       "20xl":"36px",
       "21xl": "40px",
       "24xl":"52px",
+      "80xl":"80px",
       "90xl":"90px",
       "100xl":"100px",
       "108xl":"124px",
       "109xl": "128px",
+      "500xl":"500px",
       "5xl": "24px",
       "3xl":"18px",
       "2xl":"15px",
@@ -67,4 +69,3 @@ module.exports = {
     preflight: false,
   },
 };
-

@@ -47,7 +47,7 @@
     "TeamMemberEducation": {
       "type": "string"
     },
-    "TeamMemberslug": {
+    "TeamMemberSlug": {
       "type": "string"
     },
     "TeamMemberLanguage": {
@@ -55,6 +55,28 @@
     },
     "TeamMemberRelatedSectors": {
       "type": "string"
+    },
+    "TeamMemberPdfLink": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "TeamMemberDocxLink": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

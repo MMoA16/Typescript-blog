@@ -6,7 +6,17 @@ import Footer from "@/components/Footer/Footer";
 import { FaLinkedinIn } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
 import { GrMailOption } from "react-icons/gr";
- import { MdOutlineFileDownload } from "react-icons/md";
+// import { AiOutlineFilePdf } from "react-icons/ai";
+// import { PiMicrosoftWordLogo } from "react-icons/pi";
+import { MdOutlineFileDownload } from "react-icons/md";
+
+interface Media {
+  data?: {
+    attributes?: {
+      url?: string;
+    };
+  }[];
+}
 
 interface TeamMember {
   id: number;
@@ -19,8 +29,10 @@ interface TeamMember {
     TeamMemberEmail?: string;
     TeamMemberPhone?: string;
     TeamMemberLinkedinLink?: string;
-    TeamMemberslug: string;
+    TeamMemberSlug: string; // ✅ fixed field name
     TeamMemberPhoto?: { data?: { attributes?: { url?: string } } };
+    TeamMemberPdfLink?: Media;
+    TeamMemberDocxLink?: Media;
   };
 }
 
@@ -37,34 +49,44 @@ async function fetchStrapi(path: string, cache: RequestCache = "no-store") {
 
 export default async function TeamMemberPage({ params }: PageProps) {
   try {
-    // 🚀 Fetch data in parallel
-    const [homeData, memberData] = await Promise.all([
-      fetchStrapi("/api/home-page?populate=*", "force-cache"),
-      fetchStrapi(
-        `/api/team-members?filters[TeamMemberslug][$eq]=${params.slug}&populate=*`
-      ),
-    ]);
+    const slug = params.slug.trim().toLowerCase();
 
-    const logoURL =
-      homeData?.data?.attributes?.Logo?.data?.attributes?.url &&
-      `http://localhost:1337${homeData.data.attributes.Logo.data.attributes.url}`;
+   const [homeData, memberData] = await Promise.all([
+  fetchStrapi("/api/home-page?populate=*", "force-cache"),
+  fetchStrapi(
+    `/api/team-members?filters[TeamMemberSlug][$eqi]=${slug}&populate=*`
+  ),
+]);
+
 
     if (!memberData?.data?.length) return notFound();
 
     const member: TeamMember = memberData.data[0];
 
+    const logoURL = homeData?.data?.attributes?.Logo?.data?.attributes?.url
+      ? `http://localhost:1337${homeData.data.attributes.Logo.data.attributes.url}`
+      : undefined;
+
     const imageUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
       ? `http://localhost:1337${member.attributes.TeamMemberPhoto.data.attributes.url}`
       : "/placeholder.jpg";
+
+    const pdfDownloadUrl =
+      member.attributes.TeamMemberPdfLink?.data?.[0]?.attributes?.url
+        ? `http://localhost:1337${member.attributes.TeamMemberPdfLink.data[0].attributes.url}`
+        : undefined;
+
+    const docxDownloadUrl =
+      member.attributes.TeamMemberDocxLink?.data?.[0]?.attributes?.url
+        ? `http://localhost:1337${member.attributes.TeamMemberDocxLink.data[0].attributes.url}`
+        : undefined;
 
     return (
       <>
         <Nav logoURL={logoURL} />
 
         {/* Hero Section */}
-        {/* <div className="bg-gray-800 relative w-full h-[80vh] md:h-[78vh] lg:h-[85vh] flex justify-center items-center"> */}
         <div className="bg-gray-800 relative w-full min-h-[65vh] md:min-h-[85vh] flex justify-center items-center">
-
           <div className="flex flex-col md:flex-row w-full max-w-5xl overflow-hidden">
             {/* Profile Image */}
             <div className="relative w-full h-[400px] md:w-[450px] md:h-[500px]">
@@ -84,9 +106,7 @@ export default async function TeamMemberPage({ params }: PageProps) {
                 <h1 className="text-19xl font-bold font-dm-sans">
                   {member.attributes.TeamMemberName}
                 </h1>
-
                 <span className="sm:inline-block w-[2px] h-6 md:h-8 bg-gray-800 mx-3"></span>
-
                 <p className="text-17xl font-dm-sans pt-1">
                   {member.attributes.TeamMemberDesignation}
                 </p>
@@ -123,46 +143,37 @@ export default async function TeamMemberPage({ params }: PageProps) {
                   </a>
                 )}
 
-                 <span className="block md:hidden">
-                  <a
-                    href={`tel:${member.attributes.TeamMemberPhone}`}
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-800 text-gray-100 hover:bg-gray-100 hover:text-gray-800 transition-colors"
-                  >
-                     <MdOutlineFileDownload className="w-7 h-7" />
-                  </a>
+                <span className="block md:hidden">
+                    <a
+                      href={pdfDownloadUrl}
+                      className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-800 text-gray-100 hover:bg-gray-100 hover:text-gray-800 transition-colors"
+                    >
+                       <MdOutlineFileDownload className="w-7 h-7" />
+                    </a>
                  
-                </span>
+                  </span>
               </div>
-
-              
-
-
- 
-
             </div>
           </div>
 
-       
+          {/* Download Buttons (Desktop) */}
+          <div className="absolute bottom-4 right-8 hidden md:flex items-center gap-6">
+            {docxDownloadUrl && (
+              <a href={docxDownloadUrl}>
+                {/* <PiMicrosoftWordLogo size={40} className="cursor-pointer text-white" /> */}
+                <img src="/images/word.png" className="h-10 w-10 cursor-pointer hover:scale-105" title="DownloadResume"/>
+               
+              </a>
+            )}
+            {pdfDownloadUrl && (
+              <a href={pdfDownloadUrl}>
+                <img src="/images/pdf.png" className="h-10 w-10 cursor-pointer hover:scale-105" title="DownloadResume"/>
+                {/* <AiOutlineFilePdf size={40} className="cursor-pointer text-white" /> */}
+              </a>
+            )}
+          </div>
 
-              <div className="absolute bottom-4 right-8 font-dm-sans text-gray-100 text-xl font-semibold flex items-center space-x-2 group cursor-pointer">
-                {/* Desktop: Show text */}
-                <span className="relative hidden sm:inline">
-                  Download Resume
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gray-400 transition-all duration-300 group-hover:w-full"></span>
-                </span>
-
-                {/* Mobile: Show download icon */}
-                {/* <span className="block md:hidden absolute bottom-4 right-16 ">
-                  <a
-                    href={`tel:${member.attributes.TeamMemberPhone}`}
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-800 text-gray-100 hover:bg-gray-100 hover:text-gray-800 transition-colors"
-                  >
-                     <MdOutlineFileDownload className="w-7 h-7" />
-                  </a>
-                 
-                </span> */}
-              </div>
-
+          
         </div>
 
         {/* Tabs + Footer */}

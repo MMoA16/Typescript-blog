@@ -9,6 +9,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import InternshipForm from "@/app/ContactUs/Careers/IntershipForm";
 import ApplicationForm from "@/app/ContactUs/ApplicationForm";
 import SlidingToggleButtons from "@/app/ContactUs/Careers/SlideToggleButtons";
+import Link from 'next/link';
 
 async function getStrapiData(url: string) {
   const baseURL = "http://localhost:1337";
@@ -29,14 +30,27 @@ export default function CareersHero() {
   const [activeForm, setActiveForm] = useState<"internship" | "jobs" | null>(null);
 
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
+  //     const { Logo } = strapiHomeData.data.attributes;
+  //     setLogoURL("http://localhost:1337" + Logo.data.attributes.url);
+  //   };
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
-      const { Logo } = strapiHomeData.data.attributes;
-      setLogoURL("http://localhost:1337" + Logo.data.attributes.url);
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
+    const { Logo } = strapiHomeData.data.attributes;
+    const logo = "http://localhost:1337" + Logo.data.attributes.url;
+
+    const img = new Image();
+    img.src = logo;
+    img.onload = () => setLogoURL(logo);
+  };
+  fetchData();
+}, []);
 
 
   useEffect(() => {
@@ -99,7 +113,7 @@ export default function CareersHero() {
         
         <div className="absolute bottom-6 left-3 md:left-8 flex flex-row md:flex-col items-center gap-4 z-10">
           {[
-            { icon: <FaLinkedinIn />, link: "https://www.linkedin.com" },
+            { icon: <FaLinkedinIn />, link: "https://www.linkedin.com/company/intelectia-legal-firm---india/" },
             { icon: <FaFacebookSquare />, link: "https://www.facebook.com" },
             { icon: <FaXTwitter />, link: "https://twitter.com" },
             { icon: <FaInstagram />, link: "https://www.instagram.com" },
@@ -146,28 +160,37 @@ export default function CareersHero() {
         <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <h2 className="text-4xl md:text-20xl font-light font-dm-sans text-black leading-snug">
-            Creating groundbreaking legal solutions starts with you. We need your insight and expertise
-            to help shape the future of the legal industry and beyond.
+            {/* Creating groundbreaking legal solutions starts with you. We need your insight and expertise
+            to help shape the future of the legal industry and beyond. */}
+            Creating groundbreaking legal solutions starts with the right team.
+            We invite you to discover why working with us means joining a culture of 
+            excellence, collaboration, and innovation.
           </h2>
  
           <div className="max-w-4xl md:max-w-5xl mx-auto">
-          <p className="mt-8  text-xs md:text-sm text-black font-dm-sans leading-relaxed">
-            We aim to achieve excellence—not just for our firm, but for our clients and the
+          <p className="mt-8  text-xs md:text-lg text-black font-dm-sans leading-relaxed">
+            {/* We aim to achieve excellence—not just for our firm, but for our clients and the
             communities we serve, near and far. We do this by honoring diverse perspectives
             and reimagining what’s possible in the practice of law. We bring together 
             experienced attorneys, legal researchers, strategists, and industry specialists
             to craft innovative, practical solutions for today’s—and tomorrow’s—most complex
-            legal challenges. Ready to turn legal insight into meaningful impact?
+            legal challenges. Ready to turn legal insight into meaningful impact? */}
+            At our firm, we combine deep legal expertise with forward-thinking strategies
+            to deliver solutions that stand the test of time. Our strength lies in uniting
+            skilled professionals from diverse disciplines to address today’s challenges 
+            with precision and tomorrow’s opportunities with vision. Choosing to work with 
+            us means aligning with a team that values excellence, integrity, and measurable impact.
           </p>
            </div>
           {/* Button */}
           <div className="mt-10">
-            <a
-              href="#"
+            <Link  href="/ContactUs/Careers/life-at-Intellectia"
               className="inline-flex items-center justify-center px-10 md:px-8 py-2 md:py-4 border bg-black uppercase no-underline text-white text-['10px'] md:text-sm font-medium font-dm-sans tracking-widest rounded-full hover:bg-[#a2c60f] hover:text-white transition"
             >
-              Browse our latest vacancies
-            </a>
+              {/* Browse our latest vacancies */}
+              {/* Why Work With Us */}
+              Experience Our Culture
+            </Link>
           </div>
         </div>
       </section>

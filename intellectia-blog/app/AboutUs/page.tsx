@@ -38,7 +38,7 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
     "/frame-15@2x.png",
     "/frame-14@2x.png"
   ]
-  console.log("hujioj");
+  // console.log("hujioj");
   const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
   const strapiAboutData = await getStrapiData("/api/teams?populate=*");
   const TeamData = await getStrapiData("/api/team-members?populate=*");
@@ -168,3 +168,5 @@ const AboutUs: NextPage<AboutContainerType> = async () => {
 };
 
 export default AboutUs;
+
+

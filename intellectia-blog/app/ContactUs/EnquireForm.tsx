@@ -187,7 +187,7 @@ export default function EnquireForm({ onClose }: Props) {
       </button>
 
       {/* Form */}
-      <h2 className="text-2xl font-semibold mb-4">Submit an Enquiry</h2>
+      <h2 className="text-3xl font-semibold mb-4">Submit an Enquiry</h2>
       <p className="mb-4 text-sm text-gray-600">
         Ask us about our services, partnerships, or any business-related
         questions.
